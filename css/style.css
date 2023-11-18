@@ -226,8 +226,10 @@ button {
     float: left;
 }
 .logo{
-    width: 20%;
+    width: 10%;
     float: left;
+    margin-right: 100px;
+    
 }
 .search_icon {
     float: left;
@@ -504,7 +506,7 @@ button {
     padding-bottom: 90px;
 }
 .footer_logo{
-    width: 100%;
+    width: 70%;   
     float: left;
 }
 .contact_text{
@@ -676,49 +678,176 @@ body{
   background: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
 }
+/* Add this CSS to your stylesheet */
+
+/* Search Bar Styles */
 
 .search {
-  width: 100%;
-  position: relative;
-  display: flex;
-  float: right;
+    display: flex;
+    margin-right: 10px; /* Add margin to separate search bar and login/signup buttons */
+    
+  }
+  
+  .searchTerm {
+    width: 250px; /* Adjust the width as needed */
+    padding: 10px;
+    border: 2px solid #581c7e; /* Use a color that fits your design */
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #555;
+  }
+  
+  .searchButton {
+    width: 40px; /* Adjust the width as needed */
+    border: 1px solid #581c7e; /* Use a color that fits your design */
+    border-radius: 0 5px 5px 0;
+    background-color: #581c7e; /* Use a color that fits your design */
+    color: #fff; /* Text color for the button */
+    cursor: pointer;
+  }
+  
+  /* Login/Signup Button Styles */
+  .navbar-nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .navbar-nav li button {
+    padding: 10px 15px;
+    color: #000;
+    border: 2px solid #581c7e;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    background-color: #ffffff;
+  }
+  
+  .navbar-nav li button:hover {
+    background-color: rgb(215, 65, 165);
+  }
+  svg{
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 25px;
+    display: inline-block;
+  }
+  /* Adjust the styles as needed */
+  /*
+ * Container style
+ */
+.ps {
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+  -ms-touch-action: auto;
 }
 
-/* Define search input */
-.searchTerm {
-    width: 100%; /* Full width */
-    border: 3px solid #00B4CC; /* Blue border */
-    border-right: none; /* No border on right */
-    padding: 5px; /* Add padding */
-    height: 20px; /* Set height */
-    border-radius: 5px 0 0 5px; /* Add rounded corners */
-    outline: none; /* Remove outline */
-    color: #9DBFAF; /* Light gray text color */
-    float: right;
-   }
-
-.searchTerm:focus{
-  color: #00B4CC;
-}
-
-/* search button style */
-.searchButton {
-    width: 40px; /* fixed width */
-    height: 36px; /* fixed height */
-    border: 1px solid #00B4CC; /* outline color */
-    background: #00B4CC; /* fill color */
-    text-align: center; /* text alignment */
-    color: #fff; /* text color */
-    border-radius: 0 5px 5px 0; /* rounding of corners */
-    cursor: pointer; /* cursor on hover */
-    font-size: 20px; /* font size */
-   }
-
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 30%;
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  height: 15px;
+  /* there must be 'bottom' or 'top' for ps__rail-x */
+  bottom: 0px;
+  /* please don't change 'position' */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.ps__rail-y {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  width: 15px;
+  /* there must be 'right' or 'left' for ps__rail-y */
+  right: 0;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+  display: block;
+  background-color: transparent;
+}
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+  opacity: 0.6;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: #e2e9e1;
+  opacity: 0.9;
+}
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+  background-color: #aaa;
+  border-radius: 6px;
+  transition: background-color .2s linear, height .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+  height: 6px;
+  /* there must be 'bottom' for ps__thumb-x */
+  bottom: 2px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__thumb-y {
+  background-color: #aaa;
+  border-radius: 6px;
+  transition: background-color .2s linear, width .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+  width: 6px;
+  /* there must be 'right' for ps__thumb-y */
+  right: 2px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+  background-color: #999;
+  height: 11px;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+  background-color: #999;
+  width: 11px;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important;
+  }
 }
