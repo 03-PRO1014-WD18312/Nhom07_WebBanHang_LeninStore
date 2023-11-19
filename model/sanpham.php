@@ -1,17 +1,17 @@
 <?php
-//insert Sản phẩm
+//thêm Sản phẩm
 function insert_sanpham($tensp,$price,$img_name,$mota,$iddm){
     $sql = "insert into san_pham (ten_san_pham,gia_tien,img,mota,id_danh_muc) value ('$tensp','$price','$img_name','$mota','$iddm')";
     pdo_execute($sql);
 }
 
-//delete Sản phẩm
+//Xoá Sản phẩm
 function delete_sanpham($id){
     $sql = "delete from san_pham where id = $id";
     pdo_execute($sql);
 }
 
-//
+//Hiển thị Sản Phẩm
 function loadallsp(){
     $sql = "select*from san_pham order by id desc";
     $listsanpham = pdo_query($sql);
@@ -32,7 +32,7 @@ function loc_sanpham($sreach,$iddm){
     return $listsanpham;
 }
 
-//load 1 Sản phẩm
+//Hiện Thị 1 Sản phẩm
 function load_onesp($id){
     $sql = "select * from san_pham where id = $id";
     $dmsp = pdo_query_one($sql);
@@ -60,7 +60,7 @@ function load_onesp_cungloai($id,$iddm){
     return $listsanpham;
 }
 
-//update Sản phẩm
+//Sửa Sản phẩm
 function update_sanpham($idsp,$tensp,$price,$img_name,$mota,$iddm) {
         if($img_name!=""){
             $sql = "update san_pham set ten_san_pham = '$tensp', gia_tien = $price,img='$img_name',mota='$mota',id_danh_muc=$iddm where id = $idsp";
