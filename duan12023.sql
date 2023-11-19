@@ -111,7 +111,7 @@ CREATE TABLE `san_pham` (
   `id` int(11) NOT NULL,
   `ten_san_pham` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
-  `gia` decimal(10,2) NOT NULL,
+  `gia_tien` decimal(10,2) NOT NULL,
   `mota` text NOT NULL,
   `luotxem` int(11) NOT NULL DEFAULT 0,
   `id_danh_muc` int(11) DEFAULT NULL
