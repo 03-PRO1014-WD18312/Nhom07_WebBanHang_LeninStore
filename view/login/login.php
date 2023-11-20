@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 <link rel="stylesheet" href="">
-<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
         <form action="index.php?controller=login&act=signup" method="post">

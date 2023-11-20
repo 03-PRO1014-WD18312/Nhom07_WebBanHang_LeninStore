@@ -8,7 +8,7 @@ require_once 'view/globle/slideshow.php';
 </h3>
 
 <div class="container">
-        <div class="row">
+        <div class="row" style="gap: 1.5rem;">
             <?php
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
