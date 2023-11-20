@@ -1,5 +1,5 @@
 <?php
-require_once 'view/globle/head.php';
+include_once 'view/globle/head.php';
 require_once 'view/globle/slideshow.php';
 ?>
 
@@ -9,8 +9,8 @@ require_once 'view/globle/slideshow.php';
     <div class="template_section layout_padding">
         <div class="container">
             <h1 class="solution_text">GIFTS THAT MOVE YOU</h1>
-            <div class="carousel-inner d-flex">
-                <?php
+            <div class="carousel-inner d-flex" style="gap: 1.5rem;">
+               <?php
                 if (isset($productTop3) && is_array($productTop3)) {
                     foreach ($productTop3 as $productTop3) {
                         ?>
@@ -20,6 +20,7 @@ require_once 'view/globle/slideshow.php';
                                     <div class="image_5"><img src="assets/imgs/item/<?php echo $productTop3["img"] ?>" ></div>
                                     <h3 class="cool_text">
                                         <?php echo $productTop3["mota"]; ?>
+                                        
                                     </h3>
                                 </div>
                             </div>
@@ -33,6 +34,7 @@ require_once 'view/globle/slideshow.php';
             </div>
         </div>
     </div>
+    
     <!-- template section end -->
      <!-- design section start -->
      <div class="design_section layout_padding">
@@ -42,23 +44,18 @@ require_once 'view/globle/slideshow.php';
     </div>
     <!-- design section end -->
     <div class="container">
-        <div class="row">
+        <div class="row" style="gap: 2.0rem;">
             <?php
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
                     ?>
-                    <div class="col">
-                        <div class="image_5"><img src="assets/imgs/item/<?php echo $product->image ?>" ></div>
-      
-                        <h3>
-                            <?php echo $product->name; ?>
-                        </h3>
-                        <p>Price: $
-                            <?php echo $product->price; ?>
-                        </p>
-                        <p>Luot xem:
-                            <?php echo $product->luotxem; ?>
-                        </p>
+                    <div class="card col p-0">
+                      <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $product->name; ?></h5>
+                        <p class="card-text m-0">Price: $<?php echo $product->price; ?></p>
+                        <p class="card-text">Luot xem: <?php echo $product->luotxem; ?></p>
+                      </div>
                     </div>
                     <?php
                 }

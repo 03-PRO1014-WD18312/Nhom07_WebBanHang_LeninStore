@@ -16,14 +16,16 @@ class ProductController
             }
         } else {
             $ProductDAO = new ProductDAO();
-            $products = $ProductDAO->sharelist($_GET['product']);
+            $products = $ProductDAO->sharelist($_GET['product']?? null);
             $danhmucs = $ProductDAO->showDanhMuc();
             include 'view/product/cli/listitem.php';
         }
+        
     }
 
     public function danhmuc()
     {
+        
         $ProductDAO = new ProductDAO();
         if (isset($_POST['tenloai']) && $_POST['tenloai'] != '') {
 
@@ -69,6 +71,7 @@ class ProductController
         $counts = $ProductDAO->countProducts();
         $sanphams = $ProductDAO->showPRO($page, 5);
         include('view/product/admin/iteam.php');
+        
     }
     public function binhluan()
     {
