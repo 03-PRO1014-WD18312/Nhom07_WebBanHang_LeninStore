@@ -12,20 +12,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="view/home/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../globle/css/bootstrap.min.css">
     <!-- style css -->
-    <link rel="stylesheet" type="text/css" href="view/home/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../globle/css/style.css">
     <!-- Responsive-->
-    <link rel="stylesheet" href="view/home/css/responsive.css">
+    <link rel="stylesheet" href="../globle/css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="view/home/images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="../globle/images/fevicon.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="view/home/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="../globle/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- owl stylesheets -->
-    <link rel="stylesheet" href="view/home/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="view/home/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../globle/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../globle/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
 </head>
@@ -34,7 +34,7 @@
     <!-- header section start -->
     <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.html"><img src="view/home/images/logo.png" alt="logo"></a></div>
+            <div class="logo"><a href="index.php"><img src="view/globle/images/logo.png" alt="logo"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,25 +45,30 @@
                         <a class="nav-link" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listitem.php">PRODUCT</a>
+                        <a class="nav-link" href="index.php?controller=product">
+                            PRODUCT
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">ABOUT</a>
+                        <a class="nav-link" href="about.html">ABOUT US</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">CONTACT US</a>
                     </li>
                 </ul>
                 <div class="wrap">
-                    <div class="search">                       
-                        <form action="index.php?controller=home" method="post">
-                            <input type="search" name="search" class="searchTerm" placeholder="Search for items" /> 
-                            <button type="submit" class="searchButton">                          
-                        </form>                       
+                    <div class="search">
+                        <form action="index.php?controller=home" method="post" style="display: flex;">
+                            <input type="search" name="search" class="searchTerm" placeholder="Search for items" />
+                            <button type="submit" class="searchButton">
+                                <div class="search_icon"><a href="#"><img src="view\globle\images\search-icon.png"></a>
+                                </div>
+                            </button>
+                        </form>
                     </div>
-                    
+
                 </div>
-                <ul class="navbar-nav ml-auto"> <!-- Change mr-auto to ml-auto to align to the right -->
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=login&act=">
                             <button type="button">SIGN IN</button>
@@ -87,7 +92,6 @@
         </nav>
     </div>
     <!-- header section end -->
-
     <?php
     if (isset($danhmucs) && is_array($danhmucs)) {
         foreach ($danhmucs as $danhmuc) {
@@ -102,14 +106,18 @@
         echo "Trống";
     }
     ?>
-    <script src="view/home/js/jquery.min.js"></script>
-    <script src="view/home/js/popper.min.js"></script>
-    <script src="view/home/js/bootstrap.bundle.min.js"></script>
-    <script src="view/home/js/jquery-3.0.0.min.js"></script>
-    <script src="view/home/js/plugin.js"></script>
+
+
+    <script src="../globle/js/jquery.min.js"></script>
+    <script src="../globle/js/popper.min.js"></script>
+    <script src="../globle/js/bootstrap.bundle.min.js"></script>
+    <!-- Remove the next line, as jQuery is already included above -->
+    <!-- <script src="../globle/js/jquery-3.0.0.min.js"></script> -->
+    <script src="../globle/js/plugin.js"></script>
     <!-- sidebar -->
-    <script src="view/home/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="view/home/js/custom.js"></script>
+    <script src="../globle/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../globle/js/custom.js"></script>
     <!-- javascript -->
-    <script src="view/home/js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="../globle/js/owl.carousel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   

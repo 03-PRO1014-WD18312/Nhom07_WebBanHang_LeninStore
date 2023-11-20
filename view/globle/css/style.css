@@ -705,6 +705,7 @@ body{
     background-color: #581c7e; /* Use a color that fits your design */
     color: #fff; /* Text color for the button */
     cursor: pointer;
+    height: 100%;
   }
   
   /* Login/Signup Button Styles */
