@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2023 at 10:43 AM
+-- Generation Time: Nov 22, 2023 at 05:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dam`
+-- Database: `duan12023`
 --
 
 -- --------------------------------------------------------
@@ -34,14 +34,6 @@ CREATE TABLE `binhluan` (
   `idpro` int(10) NOT NULL,
   `ngaybinhluan` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `binhluan`
---
-
-INSERT INTO `binhluan` (`id_bl`, `noidung`, `iduser`, `idpro`, `ngaybinhluan`) VALUES
-(1, 'Sản phẩm rất đang trải nghiệm', 2, 1, '2023-09-22'),
-(2, 'Sản phẩm rất tốt', 3, 1, '2023-09-22');
 
 -- --------------------------------------------------------
 
@@ -59,8 +51,8 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`id_d`, `name`) VALUES
-(1, 'Laptop'),
-(2, 'Điện Thoại');
+(3, 'Áo'),
+(4, 'Quần');
 
 -- --------------------------------------------------------
 
@@ -83,14 +75,42 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id_pro`, `name_sp`, `price`, `img`, `mota`, `luotxem`, `iddm`) VALUES
-(1, 'Apple MacBook Air M1', 300000.00, 'Laptop1.jpg', 'Sản phẩm cấu hình cơ bản bao gồm một GPU bảy lõi, bộ nhớ lưu trữ 256GB SSD, cũng như 8GB RAM bộ nhớ. Phiên bản nâng cấp với GPU tám lõi và bộ nhớ 512GB SSD có giá khởi điểm là 1249$. Cấu hình tối đa sẽ bao gồm 16GB RAM và 2TB dung lượng lưu trữ. Máy có ba tuỳ chọn màu sắc giống sản phẩm tiền nhiệm bao gồm vàng (gold), bạc (silver) và xám không gian (Space gray)', 10, 1),
-(2, 'iPhone 14 Pro Max', 140000.00, 'iPhone 14 Pro Max.jpg', 'Những dòng iPhone đến từ nhà Apple đều có sức hút đặc biệt ngay từ thời điểm ra mắt và thế hệ iPhone 14 Pro Max cũng không ngoại lệ. Có thể nói, iPhone 14 Pro Max là sự kết hợp hoàn hảo giữa các yếu tố về thiết kế, cấu hình, tính năng, hệ điều hành,... Nếu bạn tò mò về siêu phẩm này, hãy đọc ngay phần đánh giá chi tiết phiên bản cao cấp nhất trong series iPhone 14 bên dưới nhé. ', 9, 2),
-(6, 'Xiaomi Redmi Note 12 Pro', 140000.00, 'Xiaomi Redmi Note 12 Pro.jpg', 'Samsung S23 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 2 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2023.', 9, 2),
-(7, 'Macbook Air 15 inch M2 2023', 180000.00, 'Macbook Air 15 inch M2 2023.jpg', 'Vận hành doanh nghiệp trên MacBook Air M2. Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, MacBook Air được thiết kế mới nay nhỏ gọn hơn bao giờ hết, kết hợp giữa hiệu năng đáng kinh ngạc và thời lượng pin lên đến 18 giờ trong vỏ nhôm mỏng đầy ấn tượng.1 Nhờ đó, tất cả các bộ phận từ kinh doanh đến tài chính đều có thể làm việc năng suất hơn dù ở bất cứ đâu.', 9, 1),
-(8, 'Laptop Lenovo Ideapad 5 Pro', 300000.00, 'Laptop Lenovo Ideapad 5 Pro.jpg', 'Lenovo Ideapad 5 Pro 16 là chiếc laptop, máy tính xách tay thời đại mới dành cho các bạn trẻ đa nhiệm, năng động với vẻ ngoài hiện đại, mỏng nhẹ nhưng bên trong lại chứa một hiệu năng cực khủng. Bên cạnh đó, chiếc laptop Lenovo - Lenovo Ideapad này cũng được tích hợp nhiều công nghệ hiện đại, tối ưu tốt cho trải nghiệm sử dụng. Chắc chắn, mẫu laptop mỏng nhẹ này sẽ khiến bạn phải bất ngờ đấy. Hãy cùng Laptop88 đánh giá ngay mẫu laptop văn phòng này dưới đây nhé!', 10, 1),
-(9, 'Xiaomi Redmi Note 12 Pro', 140000.00, 'Xiaomi Redmi Note 12 Pro.jpg', 'Samsung S23 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 2 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2023.', 9, 2),
-(10, 'Macbook Air 15 inch M2 2023', 180000.00, 'Macbook Air 15 inch M2 2023.jpg', 'Vận hành doanh nghiệp trên MacBook Air M2. Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, MacBook Air được thiết kế mới nay nhỏ gọn hơn bao giờ hết, kết hợp giữa hiệu năng đáng kinh ngạc và thời lượng pin lên đến 18 giờ trong vỏ nhôm mỏng đầy ấn tượng.1 Nhờ đó, tất cả các bộ phận từ kinh doanh đến tài chính đều có thể làm việc năng suất hơn dù ở bất cứ đâu.', 9, 1),
-(11, 'Jun vũ', 123.00, 'junvu.jpg', '123', 0, 1);
+(14, 'LENINN FARM TEE', 456.00, 'ao2.png', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
+(15, 'MUSHROOM BRAVE TEE', 450.00, 'ao1.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
+(16, 'METEORITE TEE', 450.00, 'ao3.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
+(17, 'LENINN BLACK SOCCER JERSEY', 550.00, 'ao4.png', 'Cấu thành vải theo tiêu chuẩn áo thể thao chuyên nghiệp với 30% sợi polyester tái chế.\r\n\r\n◾️ In lưới chuyển nhiệt khổ lớn, sắc nét, thẩm thấu sâu vào bề mặt vải.\r\n\r\n◾️Mix chất liệu lưới bên hông giúp sản phẩm thoáng khí, thoát hơi, thấm hút mồ hôi tốt.', 0, 3),
+(20, 'BLACK SPEED FIRE TEE', 450.00, 'ao8.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
+(21, 'GREEN SPEED FIRE TEE', 450.00, 'ao8.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
+(22, 'GREEN SPEED FIRE TEE', 450.00, 'ao7.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
+(23, 'RIPPED KNEE JEANS', 650.00, 'quan1.jpg', '◾️Quần chất liệu denim, wash bạc, cắt ghép chất liệu, làm rách trước sau có chủ đích, raw cut phần gấu...\r\n◾️Form baggy\r\n◾️Logo thêu phía sau túi trái\r\n◾️Có dây rút tăng chỉnh kích thước vòng eo linh hoạt.', 0, 4),
+(24, 'EMBROIDERED DUCK LOGO DENIM JEANS', 560.00, 'quan2.jpg', '', 0, 4),
+(25, '4-HOLE PUNCHER WHITE SHORT', 540.00, 'quan5.jpg', '· Drawstring at elasticized waistband\r\n· Four-pocket styling\r\n· Frayed edge at cuffs\r\n· Logo-engraved black-tone hardware\r\n· Logo embroidered at leg\r\n· Graphic printed at back', 0, 4),
+(26, '4-HOLE PUNCHER BLACK TAILORED PANTS', 1250.00, 'quan4.jpg', 'Wool twill flared pants.\r\n\r\n· Belt loops\r\n· Adjustable mini cinch belts at waist\r\n· Zip-fly\r\n· Pleats at front', 0, 4),
+(27, '4-HOLE PUNCHER NAVY SHORTS', 450.00, '', '· Drawstring at elasticized waistband\r\n· Four-pocket styling\r\n· Frayed edge at cuffs\r\n· Logo-engraved black-tone hardware\r\n· Logo embroidered at leg\r\n· Graphic printed at back', 0, 4),
+(28, 'GREEN POLAR TRACK PANTS', 590.00, 'quan7.png', '◾️Vải gió tráng nhựa với hai túi hộp lớn kèm zip\r\n\r\n◾️Có dây rút tăng chỉnh gấu quần linh hoạt\r\n\r\n◾️Hai line phản quang chạy dọc bên hông\r\n\r\n◾️Logo In chuyển nhiệt', 0, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slideshow`
+--
+
+CREATE TABLE `slideshow` (
+  `image_path` varchar(255) NOT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `image_description` varchar(255) NOT NULL,
+  `id_slide` int(10) NOT NULL,
+  `is_active` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `slideshow`
+--
+
+INSERT INTO `slideshow` (`image_path`, `image_name`, `image_description`, `id_slide`, `is_active`) VALUES
+('view/home/images/junvu.jpg', 'Vu', 'Vu', 7, 1),
+('view/home/images/junvu.jpg', 'Vu', 'Vu', 8, 1),
+('view/home/images/junvu.jpg', 'Vu', 'Vu', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -113,9 +133,9 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`id_ac`, `user`, `pass`, `email`, `address`, `tel`, `role`) VALUES
-(1, 'Admin', '123456', 'admin@fpt.edu.vn', NULL, NULL, 1),
-(2, 'Hoàng Long', '123456', 'longhh7@fpt.edu.vn', NULL, NULL, 2),
-(3, 'Thành Trung', '1234565', 'trungnt173@fpt.edu.vn', 'Hà Nội', NULL, 2);
+(1, 'admin', '123456', 'admin@fpt.edu.vn', 'hanoi', '123', 1),
+(2, 'khanh', '123', 'tokhanh@fpt.edu.vn', 'hanoi', '123', 1),
+(3, 'hihi@gmail.com', 'hihi@gmail.com', 'hihi@gmail.com', NULL, NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -126,8 +146,8 @@ INSERT INTO `taikhoan` (`id_ac`, `user`, `pass`, `email`, `address`, `tel`, `rol
 --
 ALTER TABLE `binhluan`
   ADD PRIMARY KEY (`id_bl`),
-  ADD KEY `idpro` (`idpro`),
-  ADD KEY `iduser` (`iduser`);
+  ADD KEY `binhluan_ibfk_1` (`idpro`),
+  ADD KEY `binhluan_ibfk_2` (`iduser`);
 
 --
 -- Indexes for table `danhmuc`
@@ -140,7 +160,13 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_pro`),
-  ADD KEY `iddm` (`iddm`);
+  ADD KEY `sanpham_ibfk_1` (`iddm`);
+
+--
+-- Indexes for table `slideshow`
+--
+ALTER TABLE `slideshow`
+  ADD PRIMARY KEY (`id_slide`);
 
 --
 -- Indexes for table `taikhoan`
@@ -156,19 +182,25 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `id_bl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bl` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `slideshow`
+--
+ALTER TABLE `slideshow`
+  MODIFY `id_slide` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
