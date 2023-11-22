@@ -10,13 +10,13 @@ class ProductController
                 include('view/home/homeAdmin.php');
             } else {
                 $ProductDAO = new ProductDAO();
-                $product = $ProductDAO->sharelist($_GET['product']);
+                $product = $ProductDAO->sharelist($_GET['product'], $_POST['search'] ?? null);
                 $danhmucs = $ProductDAO->showDanhMuc();
                 include 'view/product/cli/listitem.php';
             }
         } else {
             $ProductDAO = new ProductDAO();
-            $products = $ProductDAO->sharelist($_GET['product']?? null);
+            $products = $ProductDAO->sharelist($_GET['product']?? null, $_POST['search'] ?? null);
             $danhmucs = $ProductDAO->showDanhMuc();
             include 'view/product/cli/listitem.php';
         }
@@ -75,6 +75,24 @@ class ProductController
     }
     public function binhluan()
     {
-        include('view/home/homeAdmin.php');
+        if (isset($_SESSION["role"])) {
+            if ($_SESSION["role"] == 1) {
+                $commentDAO = new CommentDAO();
+                $count = $commentDAO->count();
+                include('view/binhluan/binhluan.php');
+            } else {
+                $ProductDAO = new ProductDAO();
+                $commentDAO = new CommentDAO();
+                $timestamp = $commentDAO->get_time_present();
+                $commentDAO->add($_POST['id_pro'], $_POST['bl'], $_SESSION['acc'], $_POST['time']);
+                $sanpham = $ProductDAO->SelectOneItem($_POST['id_pro']);
+                $products = $ProductDAO->lq($_POST['iddm']);
+                $comments =  $commentDAO->show($_POST['id_pro']);
+                $danhmucs = $ProductDAO->showDanhMuc();
+                include('view/product/cli/item.php');
+            }
+        } else {
+            include('view/login/login.php');
+        }
     }
 }

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Include các tệp và khởi tạo các controller
 include 'controller/HomeController.php';
 include 'controller/ProductController.php';
@@ -47,21 +46,28 @@ switch ($controller) {
                 $productController = new ProductController();
                 $productController->sanpham();
             }
+            if ($_GET['act'] == 'item') {
+                $productController = new ProductController();
+                $productController->item();
+            }
+            if ($_GET['act'] == 'bl') {
+                $productController = new ProductController();
+                $productController->binhluan();
+            }
         } else {
             $productController = new ProductController();
             $productController->index();
         }
-
         break;
     case 'login':
         if ($_GET['act'] == 'signup') {
             $LoginController = new LoginController();
-            $LoginController->index();
+            $LoginController->signup();
         } elseif ($_GET['act'] == 'signin') {
             $LoginController = new LoginController();
             $LoginController->login();
         }
-        if (isset($_COOKIE["role"])) {
+        if (isset($_SESSION["role"])) {
             $UserController = new UserController();
             $UserController->index();
         } else {

@@ -1,20 +1,18 @@
 <?php
 require_once 'view/globle/head.php';
-require_once 'view/globle/slideshow.php';
+
 ?>
 
-<h3 style="margin-left: 6%;">
-    Products
-</h3>
+
 
 <div class="container">
-        <div class="row" style="gap: 1.5rem;">
+        <div class="row justify-content-between" style="gap: 1.5rem; max-width: 200%;">
             <?php
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
                     ?>
-                    <div class="card col p-0">
-                      <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
+                    <div class="card col-3 p-0">
+                      <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="product">
                       <div class="card-body">
                         <h5 class="card-title"><?php echo $product->name; ?></h5>
                         <p class="card-text m-0">Price: $<?php echo $product->price; ?></p>

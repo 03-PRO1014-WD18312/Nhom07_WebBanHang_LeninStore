@@ -44,14 +44,18 @@ class ProductDAO
         }
         return $products;
     }
-    public function sharelist($loai)
+    public function sharelist($loai, $search)
     {
+       if($search != null && $search !== ''){
+        $keyword = '%' . $search . '%';
+       }
         $sql = "SELECT sanpham.* FROM `sanpham` 
         JOIN danhmuc ON danhmuc.id_d=sanpham.iddm 
-        WHERE danhmuc.name =  '$loai'";
+        WHERE (:loai IS NULL OR danhmuc.name = :loai) AND (:keyword IS NULL OR sanpham.name_sp LIKE :keyword)";
         $stmt = $this->PDO->prepare($sql);
+        $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+        $stmt->bindParam(':loai', $loai, PDO::PARAM_STR);
         $stmt->execute();
-
         $products = array(); // hoặc $products = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

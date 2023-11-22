@@ -36,8 +36,13 @@ class LoginController
             echo "Đăng nhập thất bại.";
         }
     }
-    public function signup()
-    {
+    function signup(){
+        
+        $email = $_POST['email'];
+        $user = $_POST['user'];
+        $password = $_POST['password'];
+        $loginDAO = new LoginDAO();
+        $userInfo = $loginDAO->signup($user,$email, $password);
     }
     public function logout()
     {
