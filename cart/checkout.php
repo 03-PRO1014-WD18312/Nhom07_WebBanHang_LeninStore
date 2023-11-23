@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // In a real application, you would typically save this information to a database and handle the payment process.
 
     // For now, let's just display the information
-    echo "<h2>Order Summary</h2>";
+    echo "<h2>ĐẶT HÀNG THÀNH CÔNG</h2>";
     echo "<p>Name: $name</p>";
     echo "<p>Address: $address</p>";
 
