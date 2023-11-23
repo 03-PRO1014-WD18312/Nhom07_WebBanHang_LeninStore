@@ -48,10 +48,11 @@ require_once 'view/globle/slideshow.php';
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
                     ?>
+                    <a href="chitietsp.php"></a>
                     <div class="card col p-0">
                         <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">
+                        <div class="card-body"  href="chitietsp.php">
+                            <h5 class="card-title" href="chitietsp.php">
                                 <?php echo $product->name; ?>
                             </h5>
                             <p class="card-text m-0">Price: $

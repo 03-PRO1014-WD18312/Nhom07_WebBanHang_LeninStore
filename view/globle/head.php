@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="../globle/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="css.css" />
 </head>
 
 <body>
