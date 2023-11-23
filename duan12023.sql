@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2023 at 03:44 PM
+-- Generation Time: Nov 19, 2023 at 10:43 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,218 +18,180 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `duan12023`
+-- Database: `dam`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `binh_luan`
+-- Table structure for table `binhluan`
 --
 
-CREATE TABLE `binh_luan` (
-  `id` int(11) NOT NULL,
-  `id_san_pham` int(11) DEFAULT NULL,
-  `id_khach_hang` int(11) DEFAULT NULL,
-  `noi_dung` text DEFAULT NULL,
-  `ngay_binh_luan` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chi_tiet_don_hang`
---
-
-CREATE TABLE `chi_tiet_don_hang` (
-  `id` int(11) NOT NULL,
-  `id_don_hang` int(11) DEFAULT NULL,
-  `id_san_pham` int(11) DEFAULT NULL,
-  `so_luong` int(11) NOT NULL,
-  `gia_tien` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `danh_muc`
---
-
-CREATE TABLE `danh_muc` (
-  `id` int(11) NOT NULL,
-  `ten_danh_muc` varchar(255) NOT NULL
+CREATE TABLE `binhluan` (
+  `id_bl` int(10) NOT NULL,
+  `noidung` varchar(255) NOT NULL,
+  `iduser` int(10) NOT NULL,
+  `idpro` int(10) NOT NULL,
+  `ngaybinhluan` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `danh_muc`
+-- Dumping data for table `binhluan`
 --
 
-INSERT INTO `danh_muc` (`id`, `ten_danh_muc`) VALUES
-(1, 'Quần'),
-(2, 'Áo'),
-(3, 'Giầy');
+INSERT INTO `binhluan` (`id_bl`, `noidung`, `iduser`, `idpro`, `ngaybinhluan`) VALUES
+(1, 'Sản phẩm rất đang trải nghiệm', 2, 1, '2023-09-22'),
+(2, 'Sản phẩm rất tốt', 3, 1, '2023-09-22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `don_hang`
+-- Table structure for table `danhmuc`
 --
 
-CREATE TABLE `don_hang` (
-  `id` int(11) NOT NULL,
-  `ngay_dat` date NOT NULL,
-  `id_khach_hang` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `khach_hang`
---
-
-CREATE TABLE `khach_hang` (
-  `id` int(11) NOT NULL,
-  `ten_khach_hang` varchar(255) NOT NULL,
-  `dia_chi` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+CREATE TABLE `danhmuc` (
+  `id_d` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `khach_hang`
+-- Dumping data for table `danhmuc`
 --
 
-INSERT INTO `khach_hang` (`id`, `ten_khach_hang`, `dia_chi`, `email`) VALUES
-(1, 'Lê Tuấn Anh', 'Phú Thọ', 'anhltph32383@gmail.com');
+INSERT INTO `danhmuc` (`id_d`, `name`) VALUES
+(1, 'Laptop'),
+(2, 'Điện Thoại');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `san_pham`
+-- Table structure for table `sanpham`
 --
 
-CREATE TABLE `san_pham` (
-  `id` int(11) NOT NULL,
-  `ten_san_pham` varchar(255) NOT NULL,
+CREATE TABLE `sanpham` (
+  `id_pro` int(11) NOT NULL,
+  `name_sp` varchar(255) NOT NULL,
+  `price` double(10,2) NOT NULL DEFAULT 0.00,
   `img` varchar(255) NOT NULL,
-  `gia_tien` decimal(10,2) NOT NULL,
   `mota` text NOT NULL,
   `luotxem` int(11) NOT NULL DEFAULT 0,
-  `id_danh_muc` int(11) DEFAULT NULL
+  `iddm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `san_pham`
+-- Dumping data for table `sanpham`
 --
 
-INSERT INTO `san_pham` (`id`, `ten_san_pham`, `img`, `gia`, `mota`, `luotxem`, `id_danh_muc`) VALUES
-(1, 'SP1', 'ao1.jpg', 30.00, 'Áo Đẹp', 10, 1),
-(2, 'SP2', 'ao2.jpg', 140.00, 'Tốt ', 9, 1),
-(3, 'SP3', 'ao3.jpg', 30.00, 'Áo Đẹp', 10, 1),
-(4, 'SP4', 'ao4.jpg', 140.00, 'Tốt ', 9, 1),
-(5, 'SP5', 'ao5.jpg', 30.00, 'Áo Đẹp', 10, 1),
-(6, 'SP6', 'ao6.jpg', 140.00, 'Tốt ', 9, 1);
+INSERT INTO `sanpham` (`id_pro`, `name_sp`, `price`, `img`, `mota`, `luotxem`, `iddm`) VALUES
+(1, 'Apple MacBook Air M1', 300000.00, 'Laptop1.jpg', 'Sản phẩm cấu hình cơ bản bao gồm một GPU bảy lõi, bộ nhớ lưu trữ 256GB SSD, cũng như 8GB RAM bộ nhớ. Phiên bản nâng cấp với GPU tám lõi và bộ nhớ 512GB SSD có giá khởi điểm là 1249$. Cấu hình tối đa sẽ bao gồm 16GB RAM và 2TB dung lượng lưu trữ. Máy có ba tuỳ chọn màu sắc giống sản phẩm tiền nhiệm bao gồm vàng (gold), bạc (silver) và xám không gian (Space gray)', 10, 1),
+(2, 'iPhone 14 Pro Max', 140000.00, 'iPhone 14 Pro Max.jpg', 'Những dòng iPhone đến từ nhà Apple đều có sức hút đặc biệt ngay từ thời điểm ra mắt và thế hệ iPhone 14 Pro Max cũng không ngoại lệ. Có thể nói, iPhone 14 Pro Max là sự kết hợp hoàn hảo giữa các yếu tố về thiết kế, cấu hình, tính năng, hệ điều hành,... Nếu bạn tò mò về siêu phẩm này, hãy đọc ngay phần đánh giá chi tiết phiên bản cao cấp nhất trong series iPhone 14 bên dưới nhé. ', 9, 2),
+(6, 'Xiaomi Redmi Note 12 Pro', 140000.00, 'Xiaomi Redmi Note 12 Pro.jpg', 'Samsung S23 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 2 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2023.', 9, 2),
+(7, 'Macbook Air 15 inch M2 2023', 180000.00, 'Macbook Air 15 inch M2 2023.jpg', 'Vận hành doanh nghiệp trên MacBook Air M2. Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, MacBook Air được thiết kế mới nay nhỏ gọn hơn bao giờ hết, kết hợp giữa hiệu năng đáng kinh ngạc và thời lượng pin lên đến 18 giờ trong vỏ nhôm mỏng đầy ấn tượng.1 Nhờ đó, tất cả các bộ phận từ kinh doanh đến tài chính đều có thể làm việc năng suất hơn dù ở bất cứ đâu.', 9, 1),
+(8, 'Laptop Lenovo Ideapad 5 Pro', 300000.00, 'Laptop Lenovo Ideapad 5 Pro.jpg', 'Lenovo Ideapad 5 Pro 16 là chiếc laptop, máy tính xách tay thời đại mới dành cho các bạn trẻ đa nhiệm, năng động với vẻ ngoài hiện đại, mỏng nhẹ nhưng bên trong lại chứa một hiệu năng cực khủng. Bên cạnh đó, chiếc laptop Lenovo - Lenovo Ideapad này cũng được tích hợp nhiều công nghệ hiện đại, tối ưu tốt cho trải nghiệm sử dụng. Chắc chắn, mẫu laptop mỏng nhẹ này sẽ khiến bạn phải bất ngờ đấy. Hãy cùng Laptop88 đánh giá ngay mẫu laptop văn phòng này dưới đây nhé!', 10, 1),
+(9, 'Xiaomi Redmi Note 12 Pro', 140000.00, 'Xiaomi Redmi Note 12 Pro.jpg', 'Samsung S23 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 2 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2023.', 9, 2),
+(10, 'Macbook Air 15 inch M2 2023', 180000.00, 'Macbook Air 15 inch M2 2023.jpg', 'Vận hành doanh nghiệp trên MacBook Air M2. Siêu mạnh mẽ với chip M2 thế hệ tiếp theo, MacBook Air được thiết kế mới nay nhỏ gọn hơn bao giờ hết, kết hợp giữa hiệu năng đáng kinh ngạc và thời lượng pin lên đến 18 giờ trong vỏ nhôm mỏng đầy ấn tượng.1 Nhờ đó, tất cả các bộ phận từ kinh doanh đến tài chính đều có thể làm việc năng suất hơn dù ở bất cứ đâu.', 9, 1),
+(11, 'Jun vũ', 123.00, 'junvu.jpg', '123', 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tai_khoan`
+-- Table structure for table `taikhoan`
 --
 
-CREATE TABLE `tai_khoan` (
-  `id` int(11) NOT NULL,
-  `ten_tai_khoan` varchar(255) NOT NULL,
-  `mat_khau` varchar(255) NOT NULL,
-  `id_khach_hang` int(11) DEFAULT NULL
+CREATE TABLE `taikhoan` (
+  `id_ac` int(11) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `pass` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
+  `role` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`id_ac`, `user`, `pass`, `email`, `address`, `tel`, `role`) VALUES
+(1, 'Admin', '123456', 'admin@fpt.edu.vn', NULL, NULL, 1),
+(2, 'Hoàng Long', '123456', 'longhh7@fpt.edu.vn', NULL, NULL, 2),
+(3, 'Thành Trung', '1234565', 'trungnt173@fpt.edu.vn', 'Hà Nội', NULL, 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `binh_luan`
+-- Indexes for table `binhluan`
 --
-ALTER TABLE `binh_luan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_san_pham` (`id_san_pham`),
-  ADD KEY `id_khach_hang` (`id_khach_hang`);
+ALTER TABLE `binhluan`
+  ADD PRIMARY KEY (`id_bl`),
+  ADD KEY `idpro` (`idpro`),
+  ADD KEY `iduser` (`iduser`);
 
 --
--- Indexes for table `chi_tiet_don_hang`
+-- Indexes for table `danhmuc`
 --
-ALTER TABLE `chi_tiet_don_hang`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_don_hang` (`id_don_hang`),
-  ADD KEY `id_san_pham` (`id_san_pham`);
+ALTER TABLE `danhmuc`
+  ADD PRIMARY KEY (`id_d`);
 
 --
--- Indexes for table `danh_muc`
+-- Indexes for table `sanpham`
 --
-ALTER TABLE `danh_muc`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `sanpham`
+  ADD PRIMARY KEY (`id_pro`),
+  ADD KEY `iddm` (`iddm`);
 
 --
--- Indexes for table `don_hang`
+-- Indexes for table `taikhoan`
 --
-ALTER TABLE `don_hang`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_khach_hang` (`id_khach_hang`);
+ALTER TABLE `taikhoan`
+  ADD PRIMARY KEY (`id_ac`);
 
 --
--- Indexes for table `khach_hang`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `khach_hang`
-  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `san_pham`
+-- AUTO_INCREMENT for table `binhluan`
 --
-ALTER TABLE `san_pham`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_danh_muc` (`id_danh_muc`);
+ALTER TABLE `binhluan`
+  MODIFY `id_bl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Indexes for table `tai_khoan`
+-- AUTO_INCREMENT for table `danhmuc`
 --
-ALTER TABLE `tai_khoan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_khach_hang` (`id_khach_hang`);
+ALTER TABLE `danhmuc`
+  MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  MODIFY `id_ac` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `binh_luan`
+-- Constraints for table `binhluan`
 --
-ALTER TABLE `binh_luan`
-  ADD CONSTRAINT `binh_luan_ibfk_1` FOREIGN KEY (`id_san_pham`) REFERENCES `san_pham` (`id`),
-  ADD CONSTRAINT `binh_luan_ibfk_2` FOREIGN KEY (`id_khach_hang`) REFERENCES `khach_hang` (`id`);
+ALTER TABLE `binhluan`
+  ADD CONSTRAINT `binhluan_ibfk_1` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id_pro`),
+  ADD CONSTRAINT `binhluan_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `taikhoan` (`id_ac`);
 
 --
--- Constraints for table `chi_tiet_don_hang`
+-- Constraints for table `sanpham`
 --
-ALTER TABLE `chi_tiet_don_hang`
-  ADD CONSTRAINT `chi_tiet_don_hang_ibfk_1` FOREIGN KEY (`id_don_hang`) REFERENCES `don_hang` (`id`),
-  ADD CONSTRAINT `chi_tiet_don_hang_ibfk_2` FOREIGN KEY (`id_san_pham`) REFERENCES `san_pham` (`id`);
-
---
--- Constraints for table `don_hang`
---
-ALTER TABLE `don_hang`
-  ADD CONSTRAINT `don_hang_ibfk_1` FOREIGN KEY (`id_khach_hang`) REFERENCES `khach_hang` (`id`);
-
---
--- Constraints for table `san_pham`
---
-ALTER TABLE `san_pham`
-  ADD CONSTRAINT `san_pham_ibfk_1` FOREIGN KEY (`id_danh_muc`) REFERENCES `danh_muc` (`id`);
-
---
--- Constraints for table `tai_khoan`
---
-ALTER TABLE `tai_khoan`
-  ADD CONSTRAINT `tai_khoan_ibfk_1` FOREIGN KEY (`id_khach_hang`) REFERENCES `khach_hang` (`id`);
+ALTER TABLE `sanpham`
+  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`id_d`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
