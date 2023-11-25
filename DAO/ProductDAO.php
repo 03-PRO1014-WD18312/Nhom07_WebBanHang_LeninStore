@@ -44,14 +44,18 @@ class ProductDAO
         }
         return $products;
     }
-    public function sharelist($loai)
+    public function sharelist($loai, $search)
     {
+        if ($search != null && $search !== '') {
+            $keyword = '%' . $search . '%';
+        }
         $sql = "SELECT sanpham.* FROM `sanpham` 
         JOIN danhmuc ON danhmuc.id_d=sanpham.iddm 
-        WHERE danhmuc.name =  '$loai'";
+        WHERE (:loai IS NULL OR danhmuc.name = :loai) AND (:keyword IS NULL OR sanpham.name_sp LIKE :keyword)";
         $stmt = $this->PDO->prepare($sql);
+        $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+        $stmt->bindParam(':loai', $loai, PDO::PARAM_STR);
         $stmt->execute();
-
         $products = array(); // hoặc $products = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -194,4 +198,71 @@ class ProductDAO
             $stmt->execute();
         }
     }
+    public function show()
+    {
+        $sql = "SELECT * FROM `sanpham` ORDER BY `id_pro` DESC;";
+        $stmt = $this->PDO->prepare($sql);
+        $stmt->execute();
+        $lists = array(); // hoặc $products = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            // Tạo đối tượng sản phẩm từ dữ liệu và thêm vào danh sách
+            $product = new Product(
+                $row['id_pro'],
+                $row['name_sp'],
+                $row['mota'],
+                $row['img'],
+                $row['price'],
+
+            );
+            $lists[] = $product;
+        }
+        return $lists;
+    }
+   
+   // Trong ProductDAO.php
+  // Trong hàm showOne
+ // Trong hàm showOne của class ProductDAO
+ public function showOne($id)
+ {
+     $checkIdQuery = "SELECT COUNT(*) FROM sanpham WHERE id_pro = :id";
+     $checkIdStmt = $this->PDO->prepare($checkIdQuery);
+     $checkIdStmt->bindParam(':id', $id, PDO::PARAM_INT);
+     $checkIdStmt->execute();
+ 
+     $idExists = $checkIdStmt->fetchColumn();
+ 
+     if ($idExists) {
+         // Tăng lượt xem
+         $updateViewsQuery = "UPDATE sanpham SET luotxem = luotxem + 1 WHERE id_pro = :id";
+         $updateViewsStmt = $this->PDO->prepare($updateViewsQuery);
+         $updateViewsStmt->bindParam(':id', $id, PDO::PARAM_INT);
+         $updateViewsStmt->execute();
+ 
+         // Lấy thông tin sản phẩm
+         $sql = "SELECT sanpham.id_pro, sanpham.name_sp, sanpham.price, sanpham.img, sanpham.mota, sanpham.luotxem, danhmuc.name
+             FROM sanpham
+             JOIN danhmuc ON danhmuc.id_d = sanpham.iddm
+             WHERE sanpham.id_pro = :id";
+ 
+         $stmt = $this->PDO->prepare($sql);
+         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+         $stmt->execute();
+ 
+         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+         return new ProductShow(
+             $result['id_pro'],
+             $result['name_sp'],
+             $result['price'],
+             $result['img'],
+             $result['mota'],
+             $result['luotxem'],
+             $result['name']
+         );
+     } else {
+         echo "Sản phẩm không tồn tại.";
+     }
+ }
+ 
+
 }

@@ -1,24 +1,25 @@
 <?php
 class Product
 {
-    public $id;
+    public $id_pro; // Đổi tên thuộc tính
     public $name;
     public $image;
     public $price;
     public $luotxem;
 
-    public function __construct($id, $name, $image, $price, $luotxem)
+    public function __construct($id_pro, $name, $image, $price, $luotxem)
     {
-        $this->id = $id;
+        $this->id_pro = $id_pro; // Đổi tên ở đây
         $this->name = $name;
         $this->image = $image;
         $this->price = $price;
         $this->luotxem = $luotxem;
     }
 }
+
 class ProductShow
 {
-    public $id;
+    public $id_pro; // Đổi tên thuộc tính
     public $name;
     public $image;
     public $price;
@@ -26,9 +27,9 @@ class ProductShow
     public $luotxem;
     public $danhmuc;
 
-    public function __construct($id, $name,  $price, $image, $chitiet, $luotxem, $danhmuc)
+    public function __construct($id_pro, $name, $price, $image, $chitiet, $luotxem, $danhmuc)
     {
-        $this->id = $id;
+        $this->id_pro = $id_pro; // Đổi tên ở đây
         $this->name = $name;
         $this->image = $image;
         $this->price = $price;
@@ -36,4 +37,13 @@ class ProductShow
         $this->luotxem = $luotxem;
         $this->danhmuc = $danhmuc;
     }
+
+    // Getter cho các thuộc tính
+    public function getIdPro()
+    {
+        return $this->id_pro; // Sửa ở đây
+    }
+
 }
+
+

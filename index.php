@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Include các tệp và khởi tạo các controller
 include 'controller/HomeController.php';
 include 'controller/ProductController.php';
@@ -9,6 +8,18 @@ include 'controller/UserController.php';
 $controller = $_GET['controller'] ?? 'home';
 
 switch ($controller) {
+    case 'login':
+        $LoginController = new LoginController();
+        $LoginController->index();
+        break;
+    case 'signup':
+        $LoginController = new LoginController();
+        $LoginController->signup();
+        break;
+    case 'dangXuat':
+        $LoginController = new LoginController();
+        $LoginController->logout();
+        break;
     case 'home':
         $homeController = new HomeController();
         $homeController->index();
@@ -33,6 +44,10 @@ switch ($controller) {
         $productController = new ProductController();
         $productController->binhluan();
         break;
+    case 'sanPham_view':
+        $SanPhamController = new ProductController();
+        $SanPhamController->productDetail();
+        break;
     case 'product':
         if (isset($_GET["act"])) {
             if ($_GET['act'] == 'add') {
@@ -47,21 +62,28 @@ switch ($controller) {
                 $productController = new ProductController();
                 $productController->sanpham();
             }
+            if ($_GET['act'] == 'item') {
+                $productController = new ProductController();
+                $productController->item();
+            }
+            if ($_GET['act'] == 'bl') {
+                $productController = new ProductController();
+                $productController->binhluan();
+            }
         } else {
             $productController = new ProductController();
             $productController->index();
         }
-
         break;
     case 'login':
         if ($_GET['act'] == 'signup') {
             $LoginController = new LoginController();
-            $LoginController->index();
+            $LoginController->signup();
         } elseif ($_GET['act'] == 'signin') {
             $LoginController = new LoginController();
             $LoginController->login();
         }
-        if (isset($_COOKIE["role"])) {
+        if (isset($_SESSION["role"])) {
             $UserController = new UserController();
             $UserController->index();
         } else {

@@ -15,3 +15,17 @@ class comment
         $this->$day = $day;
     }
 }
+class commentshow
+{
+
+    public $name_user;
+    public $text;
+    public $day;
+    public function __construct($name_user, $text, $day)
+    {
+
+        $this->name_user = $name_user;
+        $this->text = $text;
+        $this->$day = $day;
+    }
+}

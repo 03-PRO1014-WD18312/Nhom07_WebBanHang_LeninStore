@@ -10,6 +10,7 @@ class HomeController
             if ($_COOKIE['role'] == 1) {
                 include('view/home/homeAdmin.php');
             } else {
+                
                 if (isset($_POST['search']) && $_POST['search'] != "") {
                     $ProductDAO = new ProductDAO();
                     $products = $ProductDAO->SelectItem($_POST['search']);

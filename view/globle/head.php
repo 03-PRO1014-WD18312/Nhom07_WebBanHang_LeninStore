@@ -16,9 +16,10 @@
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="../globle/css/style.css">
     <!-- Responsive-->
+    <link rel="stylesheet" href="view/globle/css/headdropdown.css">
     <link rel="stylesheet" href="../globle/css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="../globle/images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="view\globle\images\logo.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../globle/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -28,6 +29,8 @@
     <link rel="stylesheet" href="../globle/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="css.css" />
 </head>
 
 <body>
@@ -41,13 +44,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=product">
-                            PRODUCT
-                        </a>
+                        <ul class="menu">
+                            <li class="menu-item" >
+                                <a href="index.php?controller=product" class="nav-link">PRODUCT</a>
+                                <ul class="drop-menu">
+                                    <?php
+                                    if (isset($danhmucs) && is_array($danhmucs)) {
+                                        foreach ($danhmucs as $danhmuc) {
+                                            ?>
+                                    <li class="drop-menu-item">
+                                        <a class="dropdown-item"
+                                            href="index.php?controller=product&product=<?php echo $danhmuc->name ?>">
+                                            <?php echo $danhmuc->name ?>
+                                        </a>
+                                    </li>
+                                    <?php
+                                        }
+                                    } else {
+                                        echo "Trống";
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">ABOUT US</a>
@@ -58,7 +81,7 @@
                 </ul>
                 <div class="wrap">
                     <div class="search">
-                        <form action="index.php?controller=home" method="post" style="display: flex;">
+                        <form action="index.php?controller=product" method="post" style="display: flex;">
                             <input type="search" name="search" class="searchTerm" placeholder="Search for items" />
                             <button type="submit" class="searchButton">
                                 <div class="search_icon"><a href="giohang.php"><img src="view\globle\images\search-icon.png"></a>
@@ -92,22 +115,6 @@
         </nav>
     </div>
     <!-- header section end -->
-    <?php
-    if (isset($danhmucs) && is_array($danhmucs)) {
-        foreach ($danhmucs as $danhmuc) {
-            ?>
-    <li><a href="index.php?controller=product&product=<?php echo $danhmuc->name ?>">
-            <?php echo $danhmuc->name ?>
-        </a>
-    </li>
-    <?php
-        }
-    } else {
-        echo "Trống";
-    }
-    ?>
-
-
     <script src="../globle/js/jquery.min.js"></script>
     <script src="../globle/js/popper.min.js"></script>
     <script src="../globle/js/bootstrap.bundle.min.js"></script>
@@ -120,4 +127,3 @@
     <!-- javascript -->
     <script src="../globle/js/owl.carousel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-   

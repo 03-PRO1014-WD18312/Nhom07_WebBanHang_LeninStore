@@ -1,23 +1,23 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 <link rel="stylesheet" href="">
-<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
 <div class="container" id="container">
-    <div class="form-container sign-up-container">
-        <form action="index.php?controller=login&act=signup" method="post">
-            <h1>Create Account</h1>
-            <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
-        </form>
-    </div>
+<div class="form-container sign-up-container">
+    <form action="index.php?controller=login&act=signup" method="post">
+        <h1>Tạo tài khoản</h1>
+        <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>hoặc sử dụng email của bạn để đăng ký</span>
+        <input type="text" placeholder="Tên" name="user" /> <!-- Thêm thuộc tính name -->
+        <input type="email" placeholder="Email" name="email" /> <!-- Thêm thuộc tính name -->
+        <input type="password" placeholder="Mật khẩu" name="password" /> <!-- Thêm thuộc tính name -->
+        <button type="submit">Đăng ký</button> <!-- Đổi thành type="submit" -->
+    </form>
+</div>
+
     <div class="form-container sign-in-container">
         <form action="index.php?controller=login&act=signin" method="post">
             <h1>Sign in</h1>

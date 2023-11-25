@@ -37,6 +37,7 @@ class LoginController
             echo "Đăng nhập thất bại.";
         }
     }
+
     public function signup($user, $password, $email, $role) {
         // Kiểm tra xem tên đăng nhập đã tồn tại chưa5
         $checkExistQuery = "SELECT * FROM taikhoan WHERE user = '$user'";
@@ -59,6 +60,7 @@ class LoginController
                 return false;
             }
         }
+
     }
     public function logout()
     {

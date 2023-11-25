@@ -1,26 +1,28 @@
 <?php
-include_once 'view/globle/head.php';
+require_once 'view/globle/head.php';
 require_once 'view/globle/slideshow.php';
 ?>
 
-<section class="product-tabs section-padding position-relative wow fadeIn animated">
+<div class="product-tabs section-padding">
     <div class="bg-square"></div>
     <!-- template section start -->
     <div class="template_section layout_padding">
         <div class="container">
             <h1 class="solution_text">GIFTS THAT MOVE YOU</h1>
             <div class="carousel-inner d-flex" style="gap: 1.5rem;">
-               <?php
+                <?php
                 if (isset($productTop3) && is_array($productTop3)) {
                     foreach ($productTop3 as $productTop3) {
                         ?>
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col">
-                                    <div class="image_5"><img src="assets/imgs/item/<?php echo $productTop3["img"] ?>" ></div>
-                                    <h3 class="cool_text">
-                                        <?php echo $productTop3["mota"]; ?>
-                                        
+                                    <a href="index.php?controller=sanPham_view&id=<?php echo $productTop3["id_pro"]; ?>">
+                                        <div class="image_5">
+                                            <img src="assets/imgs/item/<?php echo $productTop3["img"] ?>">
+                                        </div>
+                                    </a>
+
                                     </h3>
                                 </div>
                             </div>
@@ -34,13 +36,13 @@ require_once 'view/globle/slideshow.php';
             </div>
         </div>
     </div>
-    
+
     <!-- template section end -->
-     <!-- design section start -->
-     <div class="design_section layout_padding">
-      <div class="container">
-        <h1 class="solution_text" style="text-align: left;">Trending now</h1>
-      </div>
+    <!-- design section start -->
+    <div class="design_section layout_padding">
+        <div class="container">
+            <h1 class="solution_text" style="text-align: left;">Trending now</h1>
+        </div>
     </div>
     <!-- design section end -->
     <div class="container">
@@ -50,12 +52,20 @@ require_once 'view/globle/slideshow.php';
                 foreach ($products as $product) {
                     ?>
                     <div class="card col p-0">
-                      <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title"><?php echo $product->name; ?></h5>
-                        <p class="card-text m-0">Price: $<?php echo $product->price; ?></p>
-                        <p class="card-text">Luot xem: <?php echo $product->luotxem; ?></p>
-                      </div>
+                        <a href="index.php?controller=sanPham_view&id=<?php echo $product->id_pro; ?>">
+                            <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?php echo $product->name; ?>
+                            </h5>
+                            <p class="card-text m-0"> $
+                                <?php echo $product->price; ?>
+                            </p>
+                            <p class="card-text">Luot xem:
+                                <?php echo $product->luotxem; ?>
+                            </p>
+                        </div>
                     </div>
                     <?php
                 }
@@ -65,6 +75,7 @@ require_once 'view/globle/slideshow.php';
             ?>
         </div>
     </div>
-</section>
+
+</div>
 
 <?php require_once 'view/globle/footer.php'; ?>
