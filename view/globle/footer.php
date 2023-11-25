@@ -34,7 +34,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-sm-12">
-            <div class="footer_logo"><a href="index.html"><img src="view/home/images/logo.png"></a></div>
+            <div class="footer_logo"><a href="index.php"><img src="view/home/images/logo.png"></a></div>
             <h4 class="contact_text">Contact Us</h4>
             <div class="call_section">
               <div class="call_section_left">
@@ -68,7 +68,7 @@
                 <h3 class="menus_text">Menus</h3>
                 <div class="menu_text">
                   <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.html">About Us</a></li>                  
                     <li><a href="template.html">Product</a></li>
                     <li><a href="contact.html">Contact Us</a></li>

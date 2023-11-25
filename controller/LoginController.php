@@ -15,6 +15,7 @@ class LoginController
 
         $username = $_POST['email'];
         $password = $_POST['pass'];
+        
 
         $loginDAO = new LoginDAO();
         $userInfo = $loginDAO->login($username, $password);
@@ -36,8 +37,28 @@ class LoginController
             echo "Đăng nhập thất bại.";
         }
     }
-    public function signup()
-    {
+    public function signup($user, $password, $email, $role) {
+        // Kiểm tra xem tên đăng nhập đã tồn tại chưa5
+        $checkExistQuery = "SELECT * FROM taikhoan WHERE user = '$user'";
+        $result = $this->conn->query($checkExistQuery);
+
+        if ($result->num_rows > 0) {
+            // Tên đăng nhập đã tồn tại
+            return false;
+        } else {
+            // Thêm thông tin tài khoản vào CSDL
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $insertQuery = "INSERT INTO taikhoan (user, pass, email, role) VALUES ('$user', '$hashedPassword', '$email', '$role')";
+            
+            if ($this->conn->query($insertQuery) === TRUE) {
+                // Đăng ký thành công
+                return true;
+            } else {
+                // Đăng ký thất bại
+                echo "Lỗi khi thêm tài khoản: " . $this->conn->error;
+                return false;
+            }
+        }
     }
     public function logout()
     {
