@@ -45,12 +45,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">HOME</a>
+                        <a class="nav-link" href="index.php">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
                         <ul class="menu">
                             <li class="menu-item" >
-                                <a href="index.php?controller=product" class="nav-link">PRODUCT</a>
+                                <a href="index.php?controller=product" class="nav-link">SẢN PHẨM</a>
                                 <ul class="drop-menu">
                                     <?php
                                     if (isset($danhmucs) && is_array($danhmucs)) {
@@ -73,16 +73,16 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">ABOUT US</a>
+                        <a class="nav-link" href="about.html">VỀ CHÚNG TÔI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">CONTACT US</a>
+                        <a class="nav-link" href="contact.html">LIÊN HỆ</a>
                     </li>
                 </ul>
                 <div class="wrap">
                     <div class="search">
                         <form action="index.php?controller=product" method="post" style="display: flex;">
-                            <input type="search" name="search" class="searchTerm" placeholder="Search for items" />
+                            <input type="search" name="search" class="searchTerm" placeholder="Tìm kiếm" />
                             <button type="submit" class="searchButton">
                                 <div class="search_icon"><a href="giohang.php"><img src="view\globle\images\search-icon.png"></a>
                                 </div>
@@ -94,13 +94,13 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=login&act=">
-                            <button type="button">SIGN IN</button>
+                            <button type="button">ĐĂNG NHẬP</button>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=login&act=">
-                            <button type="button">SIGN UP</button>
+                            <button type="button">ĐĂNG KÝ</button>
                         </a>
                     </li>
 

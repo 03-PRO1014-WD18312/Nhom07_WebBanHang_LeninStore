@@ -14,10 +14,10 @@ require_once 'view/globle/head.php';
                     <h5 class="card-title">
                         <?php echo $product->name; ?>
                     </h5>
-                    <p class="card-text m-0">Price: $
+                    <p class="card-text m-0">Giá: $
                         <?php echo $product->price; ?>
                     </p>
-                    <p class="card-text">Luot xem:
+                    <p class="card-text">Lượt xem:
                         <?php echo $product->luotxem; ?>
                     </p>
                 </div>
