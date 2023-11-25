@@ -8,7 +8,7 @@ require_once 'view/globle/slideshow.php';
     <!-- template section start -->
     <div class="template_section layout_padding">
         <div class="container">
-            <h1 class="solution_text">GIFTS THAT MOVE YOU</h1>
+            <h1 class="solution_text">Món quà đầy xúc cảm</h1>
             <div class="carousel-inner d-flex" style="gap: 1.5rem;">
                 <?php
                 if (isset($productTop3) && is_array($productTop3)) {
@@ -41,7 +41,7 @@ require_once 'view/globle/slideshow.php';
     <!-- design section start -->
     <div class="design_section layout_padding">
         <div class="container">
-            <h1 class="solution_text" style="text-align: left;">Trending now</h1>
+            <h1 class="solution_text" style="text-align: left;">Bán chạy nhất</h1>
         </div>
     </div>
     <!-- design section end -->
@@ -62,7 +62,7 @@ require_once 'view/globle/slideshow.php';
                             <p class="card-text m-0"> $
                                 <?php echo $product->price; ?>
                             </p>
-                            <p class="card-text">Luot xem:
+                            <p class="card-text">Lượt xem
                                 <?php echo $product->luotxem; ?>
                             </p>
                         </div>
