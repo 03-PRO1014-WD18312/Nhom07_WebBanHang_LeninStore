@@ -17,9 +17,12 @@ require_once 'view/globle/slideshow.php';
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col">
-                                    <div class="image_5"><img src="assets/imgs/item/<?php echo $productTop3["img"] ?>"></div>
-                                    <h3 class="cool_text">
-                                        <?php echo $productTop3["mota"]; ?>
+                                    <a href="index.php?controller=sanPham_view&id=<?php echo $productTop3["id_pro"]; ?>">
+                                        <div class="image_5">
+                                            <img src="assets/imgs/item/<?php echo $productTop3["img"] ?>">
+                                        </div>
+                                    </a>
+
                                     </h3>
                                 </div>
                             </div>
@@ -48,11 +51,12 @@ require_once 'view/globle/slideshow.php';
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
                     ?>
-                    <a href="chitietsp.php"></a>
                     <div class="card col p-0">
-                        <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
-                        <div class="card-body"  href="chitietsp.php">
-                            <h5 class="card-title" href="chitietsp.php">
+                        <a href="index.php?controller=sanPham_view&id=<?php echo $product->id_pro; ?>">
+                            <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
                                 <?php echo $product->name; ?>
                             </h5>
                             <p class="card-text m-0">Price: $
@@ -71,6 +75,7 @@ require_once 'view/globle/slideshow.php';
             ?>
         </div>
     </div>
+
 </div>
 
 <?php require_once 'view/globle/footer.php'; ?>
