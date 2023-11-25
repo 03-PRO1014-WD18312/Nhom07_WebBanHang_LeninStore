@@ -232,6 +232,13 @@ class ProductDAO
      $idExists = $checkIdStmt->fetchColumn();
  
      if ($idExists) {
+         // Tăng lượt xem
+         $updateViewsQuery = "UPDATE sanpham SET luotxem = luotxem + 1 WHERE id_pro = :id";
+         $updateViewsStmt = $this->PDO->prepare($updateViewsQuery);
+         $updateViewsStmt->bindParam(':id', $id, PDO::PARAM_INT);
+         $updateViewsStmt->execute();
+ 
+         // Lấy thông tin sản phẩm
          $sql = "SELECT sanpham.id_pro, sanpham.name_sp, sanpham.price, sanpham.img, sanpham.mota, sanpham.luotxem, danhmuc.name
              FROM sanpham
              JOIN danhmuc ON danhmuc.id_d = sanpham.iddm
