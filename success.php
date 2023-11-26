@@ -6,14 +6,13 @@ require_once 'view/globle/head.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     // Retrieve user information from the form data
     // Kiểm tra và gán giá trị cho biến nếu phần tử tồn tại
-$name = isset($_POST['name']) ? $_POST['name'] : '';
-$address = isset($_POST['andress']) ? $_POST['andress'] : '';
-$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-$productId = isset($_POST['product_id']) ? $_POST['product_id'] : '';
-$productName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
-$productPrice = isset($_POST['product_price']) ? $_POST['product_price'] : '';
-$productImage = isset($_POST['product_img']) ? $_POST['product_img'] : '';
-
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $address = isset($_POST['address']) ? $_POST['address'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $productId = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+    $productName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
+    $productPrice = isset($_POST['product_price']) ? $_POST['product_price'] : '';
+    $productImage = isset($_POST['product_img']) ? $_POST['product_img'] : '';
 
     // Display the order confirmation information
     echo "<div class='container mt-5'>";

@@ -51,6 +51,7 @@ $productCategory = $product->danhmuc;
     <div class="col-md-6">
       <img class="img-fluid" src='assets/imgs/item/<?php echo $productImage; ?>' alt='<?php echo $productName; ?>'>
     </div>
+    
     <div class="col-md-6">
       <h1 class="font-semibold text-4xl pb-4 leading-9">
         <?php echo $productName; ?>
@@ -87,7 +88,9 @@ $productCategory = $product->danhmuc;
     <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
     <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
 </form>
+
     </div>
+    
   </div>
 </div>
 
