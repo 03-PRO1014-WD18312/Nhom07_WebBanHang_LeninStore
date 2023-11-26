@@ -1,4 +1,6 @@
-<?php require_once 'view/globle/head.php'; ?>
+<?php
+  
+ require_once 'view/globle/head.php'; ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
@@ -68,27 +70,26 @@ $productCategory = $product->danhmuc;
       </p>
 
       <!-- Nút Thêm vào giỏ hàng -->
-      <button class="button button4" onclick="addToCart()">Thêm vào giỏ hàng</button>
+<!-- Nút Thêm vào giỏ hàng -->
+<form method="post" action="cart.php">
+    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+    <input type="hidden" name="product_img" value=" <?php echo $productImage; ?>">
+    <button type="submit" class="button button4" name="add_to_cart">Thêm vào giỏ hàng</button>
+</form>
 
       <!-- Nút Mua ngay -->
-      <button class="button button5" onclick="buyNow()">Mua ngay</button>
+      <form method="post" action="checkout.php">
+    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+</form>
     </div>
   </div>
 </div>
 
-
-<script>
-  // Hàm xử lý khi nhấp vào nút "Thêm vào giỏ hàng"
-  function addToCart() {
-    alert('Đã thêm vào giỏ hàng!');
-    // Thêm logic xử lý thêm sản phẩm vào giỏ hàng ở đây nếu cần
-  }
-
-  // Hàm xử lý khi nhấp vào nút "Mua ngay"
-  function buyNow() {
-    alert('Đã mua ngay!');
-    // Thêm logic xử lý mua ngay ở đây nếu cần
-  }
-</script>
 
 <?php require_once 'view/globle/footer.php'; ?>
