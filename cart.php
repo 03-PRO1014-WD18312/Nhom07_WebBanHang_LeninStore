@@ -43,74 +43,79 @@ if (isset($_POST['add_to_cart'])) {
 // Hiển thị nội dung trang giỏ hàng
 ?>
 <style>
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f8f9fa; /* Light gray background color */
+}
 
-    .mt-5 {
-        margin-top: 5rem;
-    }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background color for the cart container */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
 
-    h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+h2 {
+    color: #007BFF; /* Blue color for the heading */
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
-    }
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: left;
-    }
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
 
-    th {
-        background-color: #f8f9fa;
-    }
+th {
+    background-color: gray;
+    color: #fff;
+}
 
-    tbody tr:hover {
-        background-color: #f5f5f5;
-    }
+tbody tr:hover {
+    background-color: #f5f5f5; /* Light gray background on hover */
+}
 
-    .remove, .mua {
-        background-color: #d9534f;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        margin-right: 5px;
-        border-radius: 4px;
-    }
+.remove, .mua {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
-    .remove:hover, .mua:hover {
-        background-color: #c9302c;
-    }
+.remove {
+    background-color: #DC3545;
+    color: #fff;
+}
 
-    .remove {
-        background-color: #d9534f;
-    }
+.mua {
+    background-color: #28A745;
+    color: #fff;
+}
 
-    .mua {
-        background-color: #5bc0de;
-    }
+.remove:hover, .mua:hover {
+    background-color: #343A40;
+}
 
-    .remove:hover {
-        background-color: #c9302c;
-    }
-
-    .mua:hover {
-        background-color: #4cae4c;
-    }
+.empty-cart {
+    text-align: center;
+    margin-top: 20px;
+}
 </style>
+
 
 
 <!-- Giao diện trang giỏ hàng -->
@@ -120,6 +125,7 @@ if (isset($_POST['add_to_cart'])) {
 
     <?php if (empty($_SESSION['cart'])) : ?>
         <p>Giỏ hàng của bạn trống.</p>
+        
     <?php else : ?>
         <table class="table">
             <thead>
@@ -129,6 +135,8 @@ if (isset($_POST['add_to_cart'])) {
                     <th>Giá</th>
                     <th>Số lượng</th>
                     <th>Tổng cộng</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -136,23 +144,27 @@ if (isset($_POST['add_to_cart'])) {
                     <tr>
                         <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>" style="max-width: 50px;"></td>
                         <td><?php echo $product['name']; ?></td>
-                        <td><?php echo $product['price']; ?> $</td>
+                        <td><?php echo $product['price']; ?> VND</td>
                         <td><?php echo $product['quantity']; ?></td>
                         <td><?php echo $product['price'] * $product['quantity']; ?> $</td>
-                        <form action="">
-<!-- Inside the foreach loop where you display cart items -->
-<form method="post" action="">
-    <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
-    <button type="submit" class="remove">Xóa</button>
-</form>
-<form method="post" action="checkout.php">
-    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
-</form>
-            </form>
+                        <td>
+                        <form method="post" action="">
+                               <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
+                               <button type="submit" class="remove">Xóa</button>
+                        </form>
+                        </td>
+                        <td>
+                        <form method="post" action="checkout.php">
+                                <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+                                <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+                                <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+                            </form>
+                        </td>
+
+
+            
                     </tr>
                 <?php endforeach; ?>
                 

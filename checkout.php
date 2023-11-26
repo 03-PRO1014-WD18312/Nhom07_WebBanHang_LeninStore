@@ -1,6 +1,7 @@
 <style>
     /* Add some basic styles for the container */
 .container {
+    padding-top: 30px;
     max-width: 600px;
     margin: auto;
     padding: 20px;
@@ -11,12 +12,13 @@
 
 /* Style for headings */
 h2 {
+    margin-top: 30px;
     text-align: center;
     color: #333;
 }
 
 h3 {
-    color: #27ae60;
+    color: red;
 }
 
 /* Style for paragraphs */
@@ -35,7 +37,7 @@ input {
 
 /* Style for the submit button */
 input[type="submit"] {
-    background-color: #27ae60;
+    background-color: gray;
     color: #fff;
     cursor: pointer;
     padding: 10px;
@@ -44,7 +46,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #219653;
+    background-color: black;
 }
 
 /* Style for images */
@@ -74,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
     // Display the checkout information
     echo "<div class='container mt-5'>";
     echo "<h2>Thông Tin Đặt Hàng</h2>";
-    echo "<p>Sản phẩm: $productName</p>";
-    echo "<p>Giá: $productPrice $</p>";
+    echo "<p> $productName</p>";
+    echo "<p> $productPrice VND</p>";
     echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
     echo "<p>Họ Tên: <input type='text' name='name'></p>";
     echo "<p>Địa Chỉ Giao Hàng: <input type='text' name='andress'></p>";
@@ -83,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
 
     // You can include more fields for the checkout form as needed
 
-    echo "<h3>Tổng tiền: $productPrice $</h3>";
+    echo "<h3>Tổng tiền: $productPrice VND</h3>";
     echo "<form action='success.php' method='post'>";
     // ... (code để hiển thị thông tin đặt hàng)
     echo "<p><input type='submit' name='submit' value='MUA'></p>";
