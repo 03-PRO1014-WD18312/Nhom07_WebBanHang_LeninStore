@@ -36,6 +36,7 @@ class LoginDAO
 
         return $stringRepresentation;
     }
+
     public function signup($username, $email, $password)
     {
         try {

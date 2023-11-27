@@ -7,11 +7,11 @@
           <div class="carousel-item active">
             <div class="row">
               <div class="col-md-6">
-                <h1 class="banner_taital">test <br> test test</h1> <br>
-                <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                <h1 class="banner_taital">hihi</h1> <br>
+                <button class="contact_bt"><a href="index.php?controller=product&product=Áo">ÁO</a></button>
               </div>
               <div class="col-md-6">
-                <div class="image_1"><img src="view/home/images/junvu.jpg"></div>
+                <div class="image_1"><img src="assets/imgs/item/anh1.jpg"></div>
               </div>
             </div>
           </div>
@@ -19,10 +19,10 @@
             <div class="row">
               <div class="col-md-6">
                 <h1 class="banner_taital">test <br> test test </h1> <br>
-                <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                <div class="contact_bt"><a href="index.php?controller=product&product=Quần">QUẦN</a></div>
               </div>
               <div class="col-md-6">
-                <div class="image_1"><img src="view/home/images/junvu.jpg"></div>
+                <div class="image_1"><img src="assets/imgs/item/anh2.jpg"></div>
               </div>
             </div>
           </div>
