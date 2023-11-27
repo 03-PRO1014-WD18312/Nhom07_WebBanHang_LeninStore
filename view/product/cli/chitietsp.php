@@ -89,8 +89,18 @@ $productCategory = $product->danhmuc;
     <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
 </form>
 
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#binhluan").load("./view/binhluan/binhluanfrom.php", {idpro: <?=$productId?>});
+    });
+
+</script>
+<div class="row demo mb"id="binhluan">
     
+</div>
   </div>
 </div>
 
