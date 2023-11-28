@@ -8,7 +8,7 @@ require_once 'view/globle/slideshow.php';
     <!-- template section start -->
     <div class="template_section layout_padding">
         <div class="container">
-            <h1 class="solution_text">Món quà đầy xúc cảm</h1>
+            <h1 class="solution_text">NHỮNG MÓN QUÀ ĐẦY CẢM XÚC</h1>
             <div class="carousel-inner d-flex" style="gap: 1.5rem;">
                 <?php
                 if (isset($productTop3) && is_array($productTop3)) {

@@ -1,36 +1,33 @@
 <?php
-// Include file head và các thư viện cần thiết
 require_once 'view/globle/head.php';
-// Handle remove and buy actions
+
+// Handle remove action
 if (isset($_POST['remove_product_id'])) {
     $removeProductId = $_POST['remove_product_id'];
     // Remove the product from the cart
-    unset($_SESSION['cart'][$removeProductId]);
+    if (isset($_SESSION['cart'][$removeProductId])) {
+        unset($_SESSION['cart'][$removeProductId]);
+    }
 }
 
-// Add your buy logic here if needed
-// ...
-
-// The rest of your code for displaying the cart
-
-// Kiểm tra nếu session giỏ hàng chưa được khởi tạo, thì khởi tạo nó
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
-}
-
-// Xử lý thêm sản phẩm vào giỏ hàng
+// Handle add to cart action
 if (isset($_POST['add_to_cart'])) {
     $productId = $_POST['product_id'];
     $productName = $_POST['product_name'];
     $productPrice = $_POST['product_price'];
     $productImage = $_POST['product_img'];
 
-    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    // Initialize or retrieve the cart session
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array();
+    }
+
+    // Check if the product already exists in the cart
     if (array_key_exists($productId, $_SESSION['cart'])) {
-        // Nếu có, tăng số lượng lên 1
+        // If exists, increase the quantity
         $_SESSION['cart'][$productId]['quantity'] += 1;
     } else {
-        // Nếu chưa, thêm sản phẩm vào giỏ hàng
+        // If not, add the product to the cart
         $_SESSION['cart'][$productId] = array(
             'name' => $productName,
             'price' => $productPrice,
@@ -67,8 +64,7 @@ if (isset($_POST['add_to_cart'])) {
         overflow: hidden;
     }
 
-    th,
-    td {
+    th, td {
         border: 1px solid #ddd;
         padding: 12px;
         text-align: left;
@@ -82,8 +78,7 @@ if (isset($_POST['add_to_cart'])) {
         background-color: #f5f5f5;
     }
 
-    .remove,
-    .mua {
+    .remove, .mua {
         background-color: #d9534f;
         color: white;
         padding: 10px 15px;
@@ -93,8 +88,7 @@ if (isset($_POST['add_to_cart'])) {
         border-radius: 4px;
     }
 
-    .remove:hover,
-    .mua:hover {
+    .remove:hover, .mua:hover {
         background-color: #c9302c;
     }
 
@@ -121,9 +115,9 @@ if (isset($_POST['add_to_cart'])) {
 <div class="container mt-5">
     <h2>Giỏ hàng</h2>
 
-    <?php if (empty($_SESSION['cart'])): ?>
+    <?php if (empty($_SESSION['cart'])) : ?>
         <p>Giỏ hàng của bạn trống.</p>
-    <?php else: ?>
+    <?php else : ?>
         <table class="table">
             <thead>
                 <tr>
@@ -132,50 +126,38 @@ if (isset($_POST['add_to_cart'])) {
                     <th>Giá</th>
                     <th>Số lượng</th>
                     <th>Tổng cộng</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
                     <tr>
-                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>"
-                                style="max-width: 50px;"></td>
-                        <td>
-                            <?php echo $product['name']; ?>
-                        </td>
-                        <td>
-                            <?php echo $product['price']; ?> $
-                        </td>
-                        <td>
-                            <?php echo $product['quantity']; ?>
-                        </td>
-                        <td>
-                            <?php echo $product['price'] * $product['quantity']; ?> $
-                        </td>
+                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>" style="max-width: 50px;"></td>
+                        <td><?php echo $product['name']; ?></td>
+                        <td><?php echo $product['price']; ?> $</td>
+                        <td><?php echo $product['quantity']; ?></td>
+                        <td><?php echo $product['price'] * $product['quantity']; ?> $</td>
                         <form action="">
-                            <!-- Inside the foreach loop where you display cart items -->
-                            <form method="post" action="">
-                                <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
-                                <button type="submit" class="remove">Xóa</button>
-                            </form>
-                            <form method="post" action="checkout.php">
-                                <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-                                <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-                                <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-                                <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-                                <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
-                            </form>
-                        </form>
+<!-- Inside the foreach loop where you display cart items -->
+<form method="post" action="">
+    <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
+    <button type="submit" class="remove">Xóa</button>
+</form>
+<form method="post" action="checkout.php">
+    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+</form>
+            </form>
                     </tr>
                 <?php endforeach; ?>
-
+                
             </tbody>
-
+          
         </table>
-
-        <!-- Các nút và chức năng khác có thể thêm ở đây -->
-
     <?php endif; ?>
 </div>
-
 
 <?php require_once 'view/globle/footer.php'; ?>
