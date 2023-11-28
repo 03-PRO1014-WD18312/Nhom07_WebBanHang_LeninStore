@@ -72,16 +72,17 @@ $productCategory = $product->danhmuc;
 
       <!-- Nút Thêm vào giỏ hàng -->
 <!-- Nút Thêm vào giỏ hàng -->
+<!-- Nút Thêm vào giỏ hàng -->
 <form method="post" action="cart.php">
     <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
     <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
     <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-    <input type="hidden" name="product_img" value=" <?php echo $productImage; ?>">
+    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
     <button type="submit" class="button button4" name="add_to_cart">Thêm vào giỏ hàng</button>
 </form>
 
-      <!-- Nút Mua ngay -->
-      <form method="post" action="checkout.php">
+<!-- Nút Mua ngay -->
+<form method="post" action="checkout.php">
     <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
     <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
     <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
