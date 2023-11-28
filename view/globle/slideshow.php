@@ -1,4 +1,11 @@
-
+<style>
+  img{
+    aspect-ratio: 1;
+    max-width: 100%;
+    object-fit: cover;
+    height: 100%;
+  }
+</style>
 <!-- banner section start -->
 <div class="banner_section layout_padding">
     <div class="container">

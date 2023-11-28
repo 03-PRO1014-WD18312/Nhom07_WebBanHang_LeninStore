@@ -12,7 +12,7 @@ $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 $productId = isset($_POST['product_id']) ? $_POST['product_id'] : '';
 $productName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
 $productPrice = isset($_POST['product_price']) ? $_POST['product_price'] : '';
-$productImage = isset($_POST['product_img']) ? $_POST['product_img'] : '';
+$productImage = isset($_POST['product_image']) ? $_POST['product_image'] : '';
 
 
     // Display the order confirmation information

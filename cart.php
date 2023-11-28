@@ -67,7 +67,8 @@ if (isset($_POST['add_to_cart'])) {
         overflow: hidden;
     }
 
-    th, td {
+    th,
+    td {
         border: 1px solid #ddd;
         padding: 12px;
         text-align: left;
@@ -81,7 +82,8 @@ if (isset($_POST['add_to_cart'])) {
         background-color: #f5f5f5;
     }
 
-    .remove, .mua {
+    .remove,
+    .mua {
         background-color: #d9534f;
         color: white;
         padding: 10px 15px;
@@ -91,7 +93,8 @@ if (isset($_POST['add_to_cart'])) {
         border-radius: 4px;
     }
 
-    .remove:hover, .mua:hover {
+    .remove:hover,
+    .mua:hover {
         background-color: #c9302c;
     }
 
@@ -118,9 +121,9 @@ if (isset($_POST['add_to_cart'])) {
 <div class="container mt-5">
     <h2>Giỏ hàng</h2>
 
-    <?php if (empty($_SESSION['cart'])) : ?>
+    <?php if (empty($_SESSION['cart'])): ?>
         <p>Giỏ hàng của bạn trống.</p>
-    <?php else : ?>
+    <?php else: ?>
         <table class="table">
             <thead>
                 <tr>
@@ -132,32 +135,41 @@ if (isset($_POST['add_to_cart'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
+                <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
                     <tr>
-                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>" style="max-width: 50px;"></td>
-                        <td><?php echo $product['name']; ?></td>
-                        <td><?php echo $product['price']; ?> $</td>
-                        <td><?php echo $product['quantity']; ?></td>
-                        <td><?php echo $product['price'] * $product['quantity']; ?> $</td>
+                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>"
+                                style="max-width: 50px;"></td>
+                        <td>
+                            <?php echo $product['name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $product['price']; ?> $
+                        </td>
+                        <td>
+                            <?php echo $product['quantity']; ?>
+                        </td>
+                        <td>
+                            <?php echo $product['price'] * $product['quantity']; ?> $
+                        </td>
                         <form action="">
-<!-- Inside the foreach loop where you display cart items -->
-<form method="post" action="">
-    <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
-    <button type="submit" class="remove">Xóa</button>
-</form>
-<form method="post" action="checkout.php">
-    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
-</form>
-            </form>
+                            <!-- Inside the foreach loop where you display cart items -->
+                            <form method="post" action="">
+                                <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
+                                <button type="submit" class="remove">Xóa</button>
+                            </form>
+                            <form method="post" action="checkout.php">
+                                <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+                                <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+                                <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+                            </form>
+                        </form>
                     </tr>
                 <?php endforeach; ?>
-                
+
             </tbody>
-          
+
         </table>
 
         <!-- Các nút và chức năng khác có thể thêm ở đây -->

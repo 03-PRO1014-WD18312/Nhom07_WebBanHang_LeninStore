@@ -2,65 +2,59 @@
 include 'DAO/LoginDAO.php';
 class LoginController
 {
+
     public function index()
     {
-        if (isset($_COOKIE["rank"])) {
-            include('view/home/home.php');
-        } else {
-            include('view/login/login.php');
-        }
-    }
-    public function login()
-    {
+        if (isset($_POST['email'])) {
+            $loginDao = new LoginDao();
+            $user = $loginDao->Login($_POST['email'], $_POST['password']);
+            if ($user != []) {
+                if (isset($_SESSION['error'])) {
+                    unset($_SESSION['error']);
+                }
+                if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+                    unset($_SESSION['username']);
+                    unset($_SESSION['password']);
+                }
+                foreach ($user as $key => $value) {
+                    $_SESSION['id'] = $value->id;
+                    $_SESSION['name'] = $value->name;
+                    $_SESSION['role'] = $value->role;
 
-        $username = $_POST['email'];
-        $password = $_POST['pass'];
-        
+                };
 
-        $loginDAO = new LoginDAO();
-        $userInfo = $loginDAO->login($username, $password);
-
-        if ($userInfo) {
-            // Lấy vai trò (role) từ dữ liệu người dùng
-
-            $role = $userInfo;
-            //print_r($role);
-
-            // // Thiết lập cookie cho vai trò (role)
-            setcookie("role", $role, time() + 3600, "/");
-
-            // Chuyển hướng sau khi đăng nhập thành công
-            header("Location: index.php?controller=home");
-            exit();
-        } else {
-            // Đăng nhập thất bại, xử lý lỗi ở đây (ví dụ: thông báo lỗi)
-            echo "Đăng nhập thất bại.";
-        }
-    }
-
-    public function signup($user, $password, $email, $role) {
-        // Kiểm tra xem tên đăng nhập đã tồn tại chưa5
-        $checkExistQuery = "SELECT * FROM taikhoan WHERE user = '$user'";
-        $result = $this->conn->query($checkExistQuery);
-
-        if ($result->num_rows > 0) {
-            // Tên đăng nhập đã tồn tại
-            return false;
-        } else {
-            // Thêm thông tin tài khoản vào CSDL
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $insertQuery = "INSERT INTO taikhoan (user, pass, email, role) VALUES ('$user', '$hashedPassword', '$email', '$role')";
-            
-            if ($this->conn->query($insertQuery) === TRUE) {
-                // Đăng ký thành công
-                return true;
+                // Chuyển hướng sau khi đăng nhập thành công
+                header("Location: index.php?controller=home");
+                exit();
             } else {
-                // Đăng ký thất bại
-                echo "Lỗi khi thêm tài khoản: " . $this->conn->error;
-                return false;
+                $_SESSION['error'] = "đăng nhập thất bại";
+                // Chuyển hướng sau khi đăng nhập thành công
+                header("Location: index.php?controller=dangNhap");
+                exit();
+            }
+        } else {
+            include_once "view/login/Login.php";
+        }
+    }
+
+    public function signup()
+    {
+        if (isset($_SESSION['username'])) {
+            header("Location: index.php?controller=dangNhap");
+        } else {
+            if (isset($_SESSION['role'])) {
+                header("Location: index.php?controller=home");
+            } else {
+                if (isset($_POST['email'])) {
+                    $LoginDAO = new LoginDAO();
+                    $LoginDAO->signup($_POST['name'], $_POST['email'], $_POST['password']);
+                    header("Location: index.php?controller=dangNhap");
+                    exit();
+                } else {
+                    header("Location: index.php?controller=dangNhap");
+                }
             }
         }
-
     }
     public function logout()
     {

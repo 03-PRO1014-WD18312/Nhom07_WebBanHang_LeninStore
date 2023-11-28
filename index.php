@@ -8,11 +8,11 @@ include 'controller/UserController.php';
 $controller = $_GET['controller'] ?? 'home';
 
 switch ($controller) {
-    case 'login':
+    case 'dangNhap':
         $LoginController = new LoginController();
         $LoginController->index();
         break;
-    case 'signup':
+    case 'dangKy':
         $LoginController = new LoginController();
         $LoginController->signup();
         break;
@@ -48,6 +48,22 @@ switch ($controller) {
         $SanPhamController = new ProductController();
         $SanPhamController->productDetail();
         break;
+        case 'taiKhoan':
+            $TaiKhoansController = new TaiKhoanController();
+            $TaiKhoansController->index();
+            break;
+        case 'taiKhoan_add':
+            $TaiKhoansController = new TaiKhoanController();
+            $TaiKhoansController->add();
+            break;
+        case 'taiKhoan_fix':
+            $TaiKhoansController = new TaiKhoanController();
+            $TaiKhoansController->fix();
+            break;
+        case 'taiKhoan_delete':
+            $TaiKhoansController = new TaiKhoanController();
+            $TaiKhoansController->delete();
+            break;
     case 'product':
         if (isset($_GET["act"])) {
             if ($_GET['act'] == 'add') {

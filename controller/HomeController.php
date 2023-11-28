@@ -7,9 +7,14 @@ class HomeController
     {
         if (isset($_COOKIE["role"])) {
 
-            if ($_COOKIE['role'] == 1) {
+            if ($_COOKIE['role'] ) {
                 include('view/home/homeAdmin.php');
             } else {
+                $ProductDAO = new ProductDAO();
+                $products = $ProductDAO->SelectItem($_POST['search']);
+                $danhmucs = $ProductDAO->showDanhMuc();
+                $productTop3 = $ProductDAO->slideShow();
+                include('view/home/home.php');
                 
                 if (isset($_POST['search']) && $_POST['search'] != "") {
                     $ProductDAO = new ProductDAO();
