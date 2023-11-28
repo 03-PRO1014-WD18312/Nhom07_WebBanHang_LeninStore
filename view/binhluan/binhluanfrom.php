@@ -19,20 +19,48 @@ include '../../DAO/CommentDAO.php';
     <title>Document</title>
     <link rel="stylesheet" href="/..style.css">
     <style>
-    .binhluan table{
-    width: 90%;
-    margin-left: 5%;
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
-    .binhluan table td:nth-child(1){
+    .binhluan {
+        flex: 1;
+        margin-right: 10px;
+    }
+    .binhluan table {
+        width: 100%;
+    }
+    .binhluan table td:nth-child(1) {
         width: 50%;
     }
-    .binhluan table td:nth-child(2){
+    .binhluan table td:nth-child(2) {
         width: 20%;
     }
-    .binhluan table td:nth-child(3){
+    .binhluan table td:nth-child(3) {
         width: 30%;
-  }
-    </style>
+    }
+    .binhluanfrom {
+        flex: 1;
+        margin-left: 10px;
+    }
+    .binhluanfrom input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .binhluanfrom input[type="submit"] {
+        padding: 5px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
 

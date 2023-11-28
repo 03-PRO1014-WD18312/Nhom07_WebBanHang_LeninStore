@@ -32,7 +32,17 @@
   }
 
   /* Black */
-  
+  .row{
+    float: left;
+    width: 100%;
+  }
+  .mb{
+    margin-bottom: 30px;
+  }
+  .demo{
+    background-color: #EEE;
+    min-height: 100px;
+  }
 </style>
 
 <!-- Đoạn mã PHP hiển thị thông tin sản phẩm -->
@@ -98,10 +108,23 @@ $productCategory = $product->danhmuc;
     });
 
 </script>
+
 <div class="row demo mb"id="binhluan">
     
 </div>
   </div>
+  <h3>Sản phẩm cùng loại</h3>
+  <div class="row demo mb"id="Sản phẩm cùng loại">
+  <div class=" row boxcontent">
+                <?php
+                foreach($sp_cung_loai as $sp_cung_loai){
+                    extract($sp_cung_loai);
+                    $linksp="index.php?act=sanphamct&idsp=".$id;
+                    echo '<li><a href="'.$linksp.'">'.$name.'</a></li>';
+                }
+                ?>
+            </div>
+</div>
 </div>
 
 
