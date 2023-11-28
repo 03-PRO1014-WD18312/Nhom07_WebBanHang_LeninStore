@@ -4,29 +4,30 @@ require_once 'view/globle/head.php';
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-    // Retrieve user information from the form data
-    // Kiểm tra và gán giá trị cho biến nếu phần tử tồn tại
-    $name = isset($_POST['name']) ? $_POST['name'] : '';
-    $address = isset($_POST['address']) ? $_POST['address'] : '';
-    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-    $productId = isset($_POST['product_id']) ? $_POST['product_id'] : '';
-    $productName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
-    $productPrice = isset($_POST['product_price']) ? $_POST['product_price'] : '';
-    $productImage = isset($_POST['product_img']) ? $_POST['product_img'] : '';
+    // Retrieve information from the checkout form
+    $name = $_POST['name'];
+    $address = $_POST['andress'];
+    $phone = $_POST['phone'];
+    $productName = $_POST['product_name'];
+    $productPrice = $_POST['product_price'];
 
-    // Display the order confirmation information
+    // You may want to perform additional validation and processing here
+
+    // Display the success message
     echo "<div class='container mt-5'>";
-    echo "<h2>Đơn Hàng Đã Đặt Thành Công</h2>";
-    echo "<p>Thông tin người đặt hàng:</p>";
-    echo "<p>Họ Tên: $name</p>";
-    echo "<p>Địa Chỉ Giao Hàng: $address</p>";
-    echo "<p>Số Điện Thoại: $phone</p>";
-    echo "<p>Thông tin sản phẩm:</p>";
+    echo "<h2>Đặt Hàng Thành Công</h2>";
+    echo "<p>Cảm ơn bạn, $name, đã đặt hàng!</p>";
+    echo "<p>Thông tin đơn hàng:</p>";
     echo "<p>Sản phẩm: $productName</p>";
-    echo "<p>Giá: $productPrice $</p>";
-    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
-    echo "<p>Tổng tiền: $productPrice $</p>";
-    echo "<p>Cảm ơn bạn đã mua hàng!</p>";
+    echo "<p>Tổng tiền: $productPrice VND</p>";
+    echo "<p>Địa chỉ giao hàng: $address</p>";
+    echo "<p>Số điện thoại: $phone</p>";
+
+    // You can include more details as needed
+
+    // Add a link to return to the home page or other pages
+    echo "<p><a href='index.php'>Quay lại trang chủ</a></p>";
+
     echo "</div>";
 } else {
     // Redirect to the home page or display an error message if the form was not submitted correctly

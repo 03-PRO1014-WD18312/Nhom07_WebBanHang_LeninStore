@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
     echo "<p> $productName</p>";
     echo "<p> $productPrice VND</p>";
     echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
-    echo "<p>Họ Tên: <input type='text' name='name'></p>";
+    echo "<p>Họ Tên: <input type='text' name='name' required></p>";
     echo "<p>Địa Chỉ Giao Hàng: <input type='text' name='andress'></p>";
     echo "<p>Số Điện Thoaị: <input type='phonenumber' name='phone'></p>";
 
