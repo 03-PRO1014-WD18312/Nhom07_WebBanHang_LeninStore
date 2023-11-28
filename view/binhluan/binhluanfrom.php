@@ -19,46 +19,22 @@ include '../../DAO/CommentDAO.php';
     <title>Document</title>
     <link rel="stylesheet" href="/..style.css">
     <style>
+    /* Styles for a flex container with space-between alignment */
     .row {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
+        background-color: #f0f0f0; /* Add a background color for better separation */
+        padding: 10px; /* Add some padding for better spacing */
     }
+
+    /* Styles for the comments section */
     .binhluan {
         flex: 1;
         margin-right: 10px;
-    }
-    .binhluan table {
-        width: 100%;
-    }
-    .binhluan table td:nth-child(1) {
-        width: 50%;
-    }
-    .binhluan table td:nth-child(2) {
-        width: 20%;
-    }
-    .binhluan table td:nth-child(3) {
-        width: 30%;
-    }
-    .binhluanfrom {
-        flex: 1;
-        margin-left: 10px;
-    }
-    .binhluanfrom input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    .binhluanfrom input[type="submit"] {
-        padding: 5px 15px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+        border: 1px solid #ccc; /* Add a border around the comments section */
+       
     }
 </style>
 </head>
