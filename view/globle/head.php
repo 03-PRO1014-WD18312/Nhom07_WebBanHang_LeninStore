@@ -103,11 +103,12 @@
                             <button type="button">ĐĂNG KÝ</button>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.php">
-                            <button type="button">GIỎ HÀNG</button>
-                        </a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="cart.php">
+                                            <button type="button">Giỏ Hàng</button>
+                                        </a>
+                                    </li>
+                    
                 </ul>
             </div>
         </nav>

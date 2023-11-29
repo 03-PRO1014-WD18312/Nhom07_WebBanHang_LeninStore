@@ -63,12 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     echo "<div class='container mt-5'>";
     echo "<h2>Đặt Hàng Thành Công</h2>";
     echo "<p>Cảm ơn bạn, $name, đã đặt hàng!</p>";
-    echo "<p>Thông tin đơn hàng:</p>";
+    echo "<p>THÔNG TIN ĐƠN HÀNG:</p>";
+    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
     echo "<p>Sản phẩm: $productName</p>";
     echo "<p>Giá sản phẩm: $productPrice VND</p>";
     echo "<p>Địa chỉ giao hàng: $address</p>";
     echo "<p>Số điện thoại: $phone</p>";
-    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
     echo "<p><a href='index.php'>Quay lại trang chủ</a></p>";
     echo "</div>";
 } else {
