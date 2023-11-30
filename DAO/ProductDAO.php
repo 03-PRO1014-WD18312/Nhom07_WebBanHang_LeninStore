@@ -218,7 +218,9 @@ class ProductDAO
         }
         return $lists;
     }
-   
+    
+    
+    
    // Trong ProductDAO.php
   // Trong hàm showOne
  // Trong hàm showOne của class ProductDAO

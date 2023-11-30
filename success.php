@@ -51,17 +51,6 @@ require_once 'view/globle/head.php';
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-<<<<<<< HEAD
-    // Retrieve user information from the form data
-    // Kiểm tra và gán giá trị cho biến nếu phần tử tồn tại
-$name = isset($_POST['name']) ? $_POST['name'] : '';
-$address = isset($_POST['andress']) ? $_POST['andress'] : '';
-$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-$productId = isset($_POST['product_id']) ? $_POST['product_id'] : '';
-$productName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
-$productPrice = isset($_POST['product_price']) ? $_POST['product_price'] : '';
-$productImage = isset($_POST['product_image']) ? $_POST['product_image'] : '';
-=======
     // Retrieve information from the checkout form if the keys are set
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -69,18 +58,17 @@ $productImage = isset($_POST['product_image']) ? $_POST['product_image'] : '';
     $productName = $_POST['product_name'];
     $productPrice = $_POST['product_price'];
     $productImage = $_POST['product_img'];
->>>>>>> bf05f324139e399807902be8ceef191f9517c6dd
 
     // Display the success message
     echo "<div class='container mt-5'>";
     echo "<h2>Đặt Hàng Thành Công</h2>";
     echo "<p>Cảm ơn bạn, $name, đã đặt hàng!</p>";
-    echo "<p>Thông tin đơn hàng:</p>";
+    echo "<p>THÔNG TIN ĐƠN HÀNG:</p>";
+    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
     echo "<p>Sản phẩm: $productName</p>";
     echo "<p>Giá sản phẩm: $productPrice VND</p>";
     echo "<p>Địa chỉ giao hàng: $address</p>";
     echo "<p>Số điện thoại: $phone</p>";
-    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName' class='img-fluid'></p>";
     echo "<p><a href='index.php'>Quay lại trang chủ</a></p>";
     echo "</div>";
 } else {
