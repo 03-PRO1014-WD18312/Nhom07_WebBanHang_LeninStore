@@ -37,19 +37,86 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 
+// Hiển thị nội dung trang giỏ hàng
 ?>
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+    .mt-5 {
+        margin-top: 5rem;
+    }
 
-<!-- Cart display -->
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .remove, .mua {
+        background-color: #d9534f;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        margin-right: 5px;
+        border-radius: 4px;
+    }
+
+    .remove:hover, .mua:hover {
+        background-color: #c9302c;
+    }
+
+    .remove {
+        background-color: #d9534f;
+    }
+
+    .mua {
+        background-color: #5bc0de;
+    }
+
+    .remove:hover {
+        background-color: #c9302c;
+    }
+
+    .mua:hover {
+        background-color: #4cae4c;
+    }
+</style>
+
+
+<!-- Giao diện trang giỏ hàng -->
+<!-- Giao diện trang giỏ hàng -->
 <div class="container mt-5">
     <h2>Giỏ hàng</h2>
 
     <?php if (empty($_SESSION['cart'])) : ?>
-        <p class="empty-cart">Giỏ hàng của bạn trống.</p>
+        <p>Giỏ hàng của bạn trống.</p>
     <?php else : ?>
         <table class="table">
             <thead>
@@ -63,30 +130,32 @@ if (isset($_POST['add_to_cart'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['cart'] as $productId => $product) : ?>
+                <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
                     <tr>
-                    <td><img src="assets/imgs/item/<?php echo $product['img']; ?>" alt="
-                    <?php echo $product['name']; ?>" style="max-width: 50px"></td>
+                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>" style="max-width: 50px;"></td>
                         <td><?php echo $product['name']; ?></td>
-                        <td><?php echo $product['price']; ?> VND</td>
+                        <td><?php echo $product['price']; ?> $</td>
                         <td><?php echo $product['quantity']; ?></td>
                         <td><?php echo $product['price'] * $product['quantity']; ?> $</td>
-                        <td>
-                            <form method="post" action="">
-                                <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
-                                <button type="submit" class="btn btn-danger">Xóa</button>
-                            </form>
-                            <form method="post" action="checkout.php">
-                                <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-                                <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-                                <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-                                <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-                                <button type="submit" class="btn btn-success" name="buy_now">Mua ngay</button>
-                            </form>
-                        </td>
+                        <form action="">
+<!-- Inside the foreach loop where you display cart items -->
+<form method="post" action="">
+    <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
+    <button type="submit" class="remove">Xóa</button>
+</form>
+<form method="post" action="checkout.php">
+    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+</form>
+            </form>
                     </tr>
                 <?php endforeach; ?>
+                
             </tbody>
+          
         </table>
     <?php endif; ?>
 </div>
