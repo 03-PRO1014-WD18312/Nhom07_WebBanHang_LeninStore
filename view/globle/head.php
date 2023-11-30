@@ -103,12 +103,11 @@
                             <button type="button">ĐĂNG KÝ</button>
                         </a>
                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="cart.php">
-                                            <button type="button">Giỏ Hàng</button>
-                                        </a>
-                                    </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php">
+                            <button type="button">Giỏ Hàng</button>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -126,3 +125,5 @@
     <!-- javascript -->
     <script src="../globle/js/owl.carousel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+</body>
+</html>

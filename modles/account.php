@@ -24,4 +24,7 @@ $user = 'example_user';
 $pass = 'example_password';
 
 insert_taikhoan($email, $user, $pass);
+
+
 ?>
+

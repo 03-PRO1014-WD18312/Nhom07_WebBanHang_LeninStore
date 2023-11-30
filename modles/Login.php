@@ -23,14 +23,16 @@ class Login
         $this->role = $role;
     }
 }
-class Role
+class role
 {
-    private $name;
-
-    public function __construct($name)
+    public $id;
+    public $name;
+    public function __construct($id, $name)
     {
+        $this->id = $id;
         $this->name = $name;
     }
+
 
     public function __toString()
     {
