@@ -59,8 +59,8 @@ require_once 'view/globle/slideshow.php';
                             <h5 class="card-title">
                                 <?php echo $product->name; ?>
                             </h5>
-                            <p class="card-text m-0"> $
-                                <?php echo $product->price; ?>
+                            <p class="card-text m-0"> 
+                                <?php echo $product->price; ?> VND
                             </p>
                             <p class="card-text">Lượt xem
                                 <?php echo $product->luotxem; ?>

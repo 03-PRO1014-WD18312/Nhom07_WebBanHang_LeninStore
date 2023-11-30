@@ -1,163 +1,164 @@
 <?php
 require_once 'view/globle/head.php';
 
-// Handle remove action
-if (isset($_POST['remove_product_id'])) {
-    $removeProductId = $_POST['remove_product_id'];
-    // Remove the product from the cart
-    if (isset($_SESSION['cart'][$removeProductId])) {
-        unset($_SESSION['cart'][$removeProductId]);
-    }
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "duan12023";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Lấy thông tin giỏ hàng của người dùng (user_id = 1)
+    $query = $conn->prepare("SELECT * FROM giohang WHERE user_id = '1'");
+    $query->execute();
+    $cartItems = $query->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
-
-// Handle add to cart action
-if (isset($_POST['add_to_cart'])) {
-    $productId = $_POST['product_id'];
-    $productName = $_POST['product_name'];
-    $productPrice = $_POST['product_price'];
-    $productImage = $_POST['product_img'];
-
-    // Initialize or retrieve the cart session
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
-    }
-
-    // Check if the product already exists in the cart
-    if (array_key_exists($productId, $_SESSION['cart'])) {
-        // If exists, increase the quantity
-        $_SESSION['cart'][$productId]['quantity'] += 1;
-    } else {
-        // If not, add the product to the cart
-        $_SESSION['cart'][$productId] = array(
-            'name' => $productName,
-            'price' => $productPrice,
-            'img' => $productImage,
-            'quantity' => 1
-        );
-    }
-}
-
-// Hiển thị nội dung trang giỏ hàng
 ?>
-<style>
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
 
-    .mt-5 {
-        margin-top: 5rem;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-    h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+        h2 {
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: left;
-    }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
 
-    th {
-        background-color: #f8f9fa;
-    }
+        th {
+            background-color: #f2f2f2;
+        }
 
-    tbody tr:hover {
-        background-color: #f5f5f5;
-    }
+        img {
+            max-width: 50px;
+            max-height: 50px;
+        }
 
-    .remove, .mua {
-        background-color: #d9534f;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        margin-right: 5px;
-        border-radius: 4px;
-    }
+        form {
+            display: inline-block;
+            margin-right: 5px;
+        }
 
-    .remove:hover, .mua:hover {
-        background-color: #c9302c;
-    }
+        button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .remove {
-        background-color: #d9534f;
-    }
+        button:hover {
+            background-color: #333;
+        }
 
-    .mua {
-        background-color: #5bc0de;
-    }
+        .continue-shopping {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .remove:hover {
-        background-color: #c9302c;
-    }
+        .continue-shopping:hover {
+            background-color: #45a049;
+        }
 
-    .mua:hover {
-        background-color: #4cae4c;
-    }
-</style>
+        p {
+            color: #333;
+            text-align: center;
+        }
 
+        .xoa {
+            background-color: red;
+        }
 
-<!-- Giao diện trang giỏ hàng -->
-<!-- Giao diện trang giỏ hàng -->
-<div class="container mt-5">
+        .mua {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
     <h2>Giỏ hàng</h2>
 
-    <?php if (empty($_SESSION['cart'])) : ?>
-        <p>Giỏ hàng của bạn trống.</p>
-    <?php else : ?>
-        <table class="table">
+    <?php if (!empty($cartItems)) : ?>
+        <table>
             <thead>
                 <tr>
-                    <th></th>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
+                    <th> Tên Sản phẩm</th>
                     <th>Số lượng</th>
-                    <th>Tổng cộng</th>
+                    <th>Giá</th>
+                    <th>Ảnh</th>
+                    <th>Ngày Đặt</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['cart'] as $productId => $product): ?>
+                <?php foreach ($cartItems as $item) : ?>
                     <tr>
-                        <td><img src="<?php echo $product['img']; ?>" alt="<?php echo $product['name']; ?>" style="max-width: 50px;"></td>
-                        <td><?php echo $product['name']; ?></td>
-                        <td><?php echo $product['price']; ?> $</td>
-                        <td><?php echo $product['quantity']; ?></td>
-                        <td><?php echo $product['price'] * $product['quantity']; ?> $</td>
-                        <form action="">
-<!-- Inside the foreach loop where you display cart items -->
-<form method="post" action="">
-    <input type="hidden" name="remove_product_id" value="<?php echo $productId; ?>">
-    <button type="submit" class="remove">Xóa</button>
-</form>
-<form method="post" action="checkout.php">
-    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-    <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-    <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-    <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-    <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
-</form>
-            </form>
+                        <td><?php echo $item['product_name']; ?></td>
+                        <td><?php echo $item['quantity']; ?></td>
+                        <td><?php echo $item['product_price']; ?></td>
+                        <td><img src="<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh" style="width: 50px;"></td>
+                        <td><?php echo $item['created_at']; ?></td>
+                        <td>
+                            <form method="post" action="deletecart.php">
+                                <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
+                                <button class="xoa" type="submit">Xoá</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="checkout.php">
+                                <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $item['product_name']; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $item['product_price']; ?>">
+                                <input type="hidden" name="product_img" value="<?php echo $item['product_img']; ?>">
+                                <button type="submit" class="mua" name="buy_now">Mua ngay</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
-                
             </tbody>
-          
         </table>
+        <form method="post" action="index.php">
+            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
+        </form>
+    <?php else : ?>
+        <p>Giỏ hàng trống.</p>
+        <form method="post" action="index.php">
+            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
+        </form>
     <?php endif; ?>
-</div>
 
-<?php require_once 'view/globle/footer.php'; ?>
+    <?php require_once 'view/globle/footer.php'; ?>
+</body>
+</html>
