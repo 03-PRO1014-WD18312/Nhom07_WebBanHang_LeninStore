@@ -44,11 +44,11 @@
               </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-            <i class="fa fa-left"><img src="view/home/images/left-icon.png"></i>
+          <a class="" href="#my_slider" role="button" data-slide="prev">
+            <i class="fa fa-left"></i>
           </a>
-          <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-            <i class="fa fa-right"><img src="view/home/images/right-icon.png"></i>
+          <a class="" href="#my_slider" role="button" data-slide="next">
+            <i class="fa fa-right"></i>
           </a>
         </div>
       </div>

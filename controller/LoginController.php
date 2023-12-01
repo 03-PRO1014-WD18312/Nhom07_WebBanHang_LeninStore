@@ -1,11 +1,14 @@
 <?php
 include 'DAO/LoginDAO.php';
+
+
 class LoginController
 {
+    
 
     public function index()
     {
-        if (isset($_POST['email'])) {
+        if (isset($_POST['email'])) {           
             $loginDao = new LoginDao();
             $user = $loginDao->Login($_POST['email'], $_POST['password']);
             if ($user != []) {
@@ -57,8 +60,10 @@ class LoginController
         }
     }
     public function logout()
-    {
-        setcookie("role", "", time() + 3600, "/");
-        header("Location: index.php?controller=home");
-    }
+{
+    session_destroy();
+    header("Location: index.php?controller=home");
+    exit();
+}
+
 }
