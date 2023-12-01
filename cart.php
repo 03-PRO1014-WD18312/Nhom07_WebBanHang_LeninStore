@@ -22,98 +22,20 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h2 {
-            color: #333;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        img {
-            max-width: 50px;
-            max-height: 50px;
-        }
-
-        form {
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        button {
-            background-color: #555;
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #333;
-        }
-
-        .continue-shopping {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .continue-shopping:hover {
-            background-color: #45a049;
-        }
-
-        p {
-            color: #333;
-            text-align: center;
-        }
-
-        .xoa {
-            background-color: red;
-        }
-
-        .mua {
-            background-color: green;
-        }
-    </style>
 </head>
+
 <body>
-    <h2>Giỏ hàng</h2>
 
     <?php if (!empty($cartItems)) : ?>
         <table>
             <thead>
                 <tr>
-                    <th> Tên Sản phẩm</th>
+                    <th>Tên Sản phẩm</th>
                     <th>Số lượng</th>
                     <th>Giá</th>
                     <th>Ảnh</th>
@@ -128,7 +50,8 @@ try {
                         <td><?php echo $item['product_name']; ?></td>
                         <td><?php echo $item['quantity']; ?></td>
                         <td><?php echo $item['product_price']; ?></td>
-                        <td><img src="<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh" style="width: 50px;"></td>
+                        <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
+                                style="width: 50px;"></td>
                         <td><?php echo $item['created_at']; ?></td>
                         <td>
                             <form method="post" action="deletecart.php">
@@ -161,4 +84,5 @@ try {
 
     <?php require_once 'view/globle/footer.php'; ?>
 </body>
+
 </html>
