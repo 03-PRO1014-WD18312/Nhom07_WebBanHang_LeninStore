@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
     exit();
 }
 
+
 // Include the footer
 require_once 'view/globle/footer.php';
 ?>
