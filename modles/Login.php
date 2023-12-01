@@ -23,7 +23,7 @@ class Login
         $this->role = $role;
     }
 }
-class role
+class Role
 {
     public $id;
     public $name;

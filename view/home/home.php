@@ -2,6 +2,7 @@
 require_once 'view/globle/head.php';
 require_once 'view/globle/slideshow.php';
 ?>
+
 <link rel="stylesheet" href="view/home/style.css">
 <div class="product-tabs section-padding">
     <div class="bg-square"></div>

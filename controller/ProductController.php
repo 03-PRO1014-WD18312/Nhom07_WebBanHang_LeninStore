@@ -47,13 +47,11 @@ class ProductController
     }
     public function sanpham()
     {
-        if($_COOKIE['role'] != 1){
+        
             $ProductDAO = new ProductDAO();
             $products = $ProductDAO->Select();
             $danhmucs = $ProductDAO->showDanhMuc();
-            include('view/home/home.php');
-        }
-        $ProductDAO = new ProductDAO();
+            $ProductDAO = new ProductDAO();
         if (isset($_POST['add']) && $_POST['add'] != '') {
             $ProductDAO->addPRO($_POST['tensanpam'], $_POST['gia'], $_FILES['img'], $_POST['mota'], $_POST['iddm']);
         }
@@ -71,6 +69,8 @@ class ProductController
         $counts = $ProductDAO->countProducts();
         $sanphams = $ProductDAO->showPRO($page, 5);
         include('view/product/admin/iteam.php');
+        
+        
         
     }
     public function binhluan()
