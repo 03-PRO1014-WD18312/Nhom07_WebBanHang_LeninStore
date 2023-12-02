@@ -1,6 +1,7 @@
 <?php
-  
- require_once 'view/globle/head.php'; ?>
+ require_once 'view\globle\head.php'; 
+ ?>
+
 <?php
 $servername = "localhost";
 $username = "root";

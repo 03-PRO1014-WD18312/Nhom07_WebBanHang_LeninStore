@@ -28,7 +28,7 @@ switch ($controller) {
         $productController = new ProductController();
         $productController->danhmuc();
         break;
-    case 'hanghoa':
+    case 'sanpham':
         $productController = new ProductController();
         $productController->sanpham();
         break;
@@ -94,7 +94,7 @@ switch ($controller) {
     case 'login':
         if ($_GET['act'] == 'signup') {
             $LoginController = new LoginController();
-            $LoginController->signup();
+            $LoginController->index();
         } elseif ($_GET['act'] == 'signin') {
             $LoginController = new LoginController();
             $LoginController->login();

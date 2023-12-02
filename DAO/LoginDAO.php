@@ -26,17 +26,20 @@ class LoginDAO
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
-
+    
         $userData = array();
-
+    
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Tạo đối tượng Login từ dữ liệu và thêm vào danh sách userData
-            $user = new Login($row['id_ac'], $row['user'], $row['pass'], $row['name'], $row['email'], $row['address'], $row['tel'], $row['role']);
-            $userData[] = $user;
+            // Thêm dữ liệu người dùng vào mảng
+            $userData = $row;
         }
-
-        return $userData;
+    
+        // Xác định quyền (role) của người dùng từ dữ liệu
+        $userRole = $userData['id_quyen'];
+    
+        return $userRole;
     }
+    
 
     public function signup($name, $email, $password)
     {

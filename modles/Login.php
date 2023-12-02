@@ -23,7 +23,7 @@ class Login
         $this->role = $role;
     }
 }
-class role
+class Role
 {
     public $id;
     public $name;
@@ -34,8 +34,4 @@ class role
     }
 
 
-    public function __toString()
-    {
-        return $this->name;
-    }
 }
