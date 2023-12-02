@@ -20,96 +20,26 @@ try {
 }
 ?>
 
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    h2 {
-        color: #333;
-        text-align: center;
-        padding: 20px 0;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+</head>
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+<body>
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    img {
-        max-width: 50px;
-        max-height: 50px;
-    }
-
-    form {
-        display: inline-block;
-        margin-right: 5px;
-    }
-
-    button, .continue-shopping {
-        background-color: #555;
-        color: #fff;
-        border: none;
-        padding: 8px 12px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    button:hover, .continue-shopping:hover {
-        background-color: #333;
-    }
-
-    .xoa {
-        background-color: red;
-    }
-
-    .mua {
-        background-color: green;
-    }
-
-    p {
-        color: #333;
-        text-align: center;
-    }
-
-    /* Checkbox styling */
-    .checkbox-label {
-        display: flex;
-        align-items: center;
-    }
-
-    .checkbox-label input {
-        margin-right: 5px;
-    }
-</style>
-
-<h2>Giỏ hàng</h2>
-
-<?php if (!empty($cartItems)) : ?>
-    <form method="post" action="">
+    <?php if (!empty($cartItems)) : ?>
         <table>
             <thead>
                 <tr>
-                    <th> Tên Sản phẩm</th>
+                    <th>Tên Sản phẩm</th>
                     <th>Số lượng</th>
                     <th>Giá</th>
                     <th>Ảnh</th>
                     <th>Ngày Đặt</th>
-                    <th></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -120,18 +50,13 @@ try {
                         <td><?php echo $item['product_name']; ?></td>
                         <td><?php echo $item['quantity']; ?></td>
                         <td><?php echo $item['product_price']; ?></td>
-                        <td><img src="<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh" style="width: 50px;"></td>
+                        <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
+                                style="width: 50px;"></td>
                         <td><?php echo $item['created_at']; ?></td>
                         <td>
-                            <input type="checkbox" name="selected_products[]" value="<?php echo $item['product_id']; ?>">
-                        </td>
-                        <td>
-                            <form method="post" action="">
+                            <form method="post" action="deletecart.php">
                                 <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
                                 <button class="xoa" type="submit">Xoá</button>
-                                <?php
-                                    // ... your existing delete logic
-                                ?>
                             </form>
                         </td>
                         <td>
@@ -147,13 +72,17 @@ try {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <button type="submit" class="mua" name="buy_all">Mua Tất Cả</button>
-        <a href="index.php?controller=product" class="nav-link">Tiếp Tục Mua Hàng</a>
-    </form>
+        <form method="post" action="index.php">
+            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
+        </form>
+    <?php else : ?>
+        <p>Giỏ hàng trống.</p>
+        <form method="post" action="index.php">
+            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
+        </form>
+    <?php endif; ?>
 
-<?php else : ?>
-    <p>Giỏ hàng trống.</p>
-    <a href="index.php?controller=product" class="nav-link">Mua Hàng</a>
-<?php endif; ?>
+    <?php require_once 'view/globle/footer.php'; ?>
+</body>
 
-<?php require_once 'view/globle/footer.php'; ?>
+</html>
