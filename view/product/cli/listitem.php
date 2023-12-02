@@ -14,8 +14,8 @@ require_once 'view/globle/head.php';
             <h5 class="card-title" style="color: #000000;font-size: 18px;font-weight: 500; text-align: center;">
               <?php echo $product->name; ?>
             </h5>
-            <p class="card-text m-0">Giá: $
-              <?php echo $product->price; ?>
+            <p class="card-text m-0"> 
+              <?php echo $product->price; ?>.000 VND
             </p>
             <p class="card-text">Lượt xem:
               <?php echo $product->luotxem; ?>

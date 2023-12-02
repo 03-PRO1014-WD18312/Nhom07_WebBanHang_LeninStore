@@ -25,12 +25,14 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../globle/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
+    
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- owl stylesheets -->
     <link rel="stylesheet" href="../globle/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../globle/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
+        
 
 </head>
 
@@ -38,7 +40,7 @@
     <!-- header section start -->
     <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.php"><img src="view/globle/images/logo.png" alt="logo"></a></div>
+            <div class="logo"><a href="index.php"><img src="view\globle\images\logo.png" alt="logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
