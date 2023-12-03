@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,50 +9,37 @@
 </head>
 
 <body>
-    <h3>
-        <?php if (isset($_SESSION['error'])) {
-            echo $_SESSION['error'];
-        } ?>
-    </h3>
     <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="index.php?controller=dangKy" method="post">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <input type="text" name="name" placeholder="Name" />
-                <input type="email" name="email" placeholder="Email" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form action="index.php?controller=dangNhap" method="post">
-                <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your account</span>
-                <input type="email" name="email" <?php
-                if (isset($_SESSION['username'])) {
-                    echo 'value="' . $_SESSION['username'] . '"';
-                }
-                ?> placeholder="Email" />
-                <input type="password" name="password" <?php
-                if (isset($_SESSION['password'])) {
-                    echo 'value="' . $_SESSION['password'] . '"';
-                }
-                ?> placeholder="Password" />
-                <a href="index.php?controller=quenMatKhau">Forgot your password?</a>
-                <button>Sign In</button>
-            </form>
-        </div>
+    <div class="form-container sign-up-container">
+        <form action="index.php?controller=login&act=signup" method="post">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="index.php?controller=login&act=signin" method="post">
+            <h1>Sign in</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="email" placeholder="email" name="email" />
+            <input type="password" placeholder="Password" name="pass" />
+            <a href="#">Forgot your password?</a>
+            <button>Sign In</button>
+        </form>
+    </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">

@@ -1,3 +1,5 @@
+
+
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -23,21 +25,22 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../globle/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
+    
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- owl stylesheets -->
     <link rel="stylesheet" href="../globle/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../globle/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="css.css" />
+        
+
 </head>
 
 <body>
     <!-- header section start -->
     <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.php"><img src="view/globle/images/logo.png" alt="logo"></a></div>
+            <div class="logo"><a href="index.php"><img src="view\globle\images\logo.png" alt="logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,20 +52,20 @@
                     </li>
                     <li class="nav-item">
                         <ul class="menu">
-                            <li class="menu-item" >
+                            <li class="menu-item">
                                 <a href="index.php?controller=product" class="nav-link">SẢN PHẨM</a>
                                 <ul class="drop-menu">
                                     <?php
                                     if (isset($danhmucs) && is_array($danhmucs)) {
                                         foreach ($danhmucs as $danhmuc) {
                                             ?>
-                                    <li class="drop-menu-item">
-                                        <a class="dropdown-item"
-                                            href="index.php?controller=product&product=<?php echo $danhmuc->name ?>">
-                                            <?php echo $danhmuc->name ?>
-                                        </a>
-                                    </li>
-                                    <?php
+                                            <li class="drop-menu-item">
+                                                <a class="dropdown-item"
+                                                    href="index.php?controller=product&product=<?php echo $danhmuc->name ?>">
+                                                    <?php echo $danhmuc->name ?>
+                                                </a>
+                                            </li>
+                                            <?php
                                         }
                                     } else {
                                         echo "Trống";
@@ -84,7 +87,8 @@
                         <form action="index.php?controller=product" method="post" style="display: flex;">
                             <input type="search" name="search" class="searchTerm" placeholder="Tìm kiếm" />
                             <button type="submit" class="searchButton">
-                                <div class="search_icon"><a href="hienthicart.php"><img src="view\globle\images\search-icon.png"></a>
+                                <div class="search_icon"><a href="hienthicart.php"><img
+                                            src="view\globle\images\search-icon.png"></a>
                                 </div>
                             </button>
                         </form>
@@ -92,24 +96,43 @@
 
                 </div>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=login&act=">
-                            <button type="button">ĐĂNG NHẬP</button>
-                        </a>
-                    </li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <!-- Người dùng đã đăng nhập -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">Profile</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Đăng Xuất</a>
+                        </li> -->
+                    <?php else:
+                        if (empty($_SESSION['username'])) {
+                            // Người dùng chưa đăng nhập
+                            echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="index.php?controller=login&act=">';
+                            echo '<button type="button">ĐĂNG NHẬP</button>';
+                            echo '</a>';
+                            echo '</li>';
+                            echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="index.php?controller=login&act=dangXuat">';
+                            echo '<button type="button">ĐĂNG KÝ</button>';
+                            echo '</a>';
+                            echo '</li>';
+                        }
+                        ?>
+                         <!-- <li class="nav-item">
+                            <a class="nav-link" href="index.php?controller=login&act=">Đăng Xuất</a>
+                        </li> -->
+                        <!-- Người dùng chưa đăng nhập -->
+
+                    <?php endif; ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=login&act=">
-                            <button type="button">ĐĂNG KÝ</button>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="cart.php">
-                            <button type="button">Giỏ Hàng</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27" viewBox="0 0 576 512">
+                            <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                         </a>
                     </li>
                 </ul>
-            </div>
         </nav>
     </div>
     <!-- header section end -->
@@ -126,4 +149,5 @@
     <script src="../globle/js/owl.carousel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
+
 </html>

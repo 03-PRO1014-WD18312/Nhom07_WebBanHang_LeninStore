@@ -7,7 +7,7 @@
         <ul>
             <li><a href="index.php?controller=home">Trang chủ</a></li>
             <li><a href="index.php?controller=danhmuc">Danh mục</a></li>
-            <li><a href="index.php?controller=hanghoa">Hàng hóa</a></li>
+            <li><a href="index.php?controller=sanpham">Hàng hóa</a></li>
             <li><a href="index.php?controller=khachang">Khách hàng</a></li>
             <li><a href="index.php?controller=binhluan">Bình luận</a></li>
             <li><a href="index.php?controller=logout">Đăng xuất</a></li>

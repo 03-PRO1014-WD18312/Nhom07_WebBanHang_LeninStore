@@ -675,8 +675,9 @@ button {
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
-  background: #f2f2f2;
+  background-color: white;
   font-family: 'Open Sans', sans-serif;
+  max-height: 100%;
 }
 /* Add this CSS to your stylesheet */
 
@@ -839,6 +840,13 @@ body{
   background-color: #999;
   width: 11px;
 }
+
+.header_section {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 
 /* MS supports */
 @supports (-ms-overflow-style: none) {

@@ -3,6 +3,7 @@ require_once 'view/globle/head.php';
 require_once 'view/globle/slideshow.php';
 ?>
 
+<link rel="stylesheet" href="view/home/style.css">
 <div class="product-tabs section-padding">
     <div class="bg-square"></div>
     <!-- template section start -->
@@ -12,18 +13,16 @@ require_once 'view/globle/slideshow.php';
             <div class="carousel-inner d-flex" style="gap: 1.5rem;">
                 <?php
                 if (isset($productTop3) && is_array($productTop3)) {
-                    foreach ($productTop3 as $productTop3) {
+                    foreach ($productTop3 as $product) {
                         ?>
-                        <div class="carousel-item active">
+                        <div class="carousel-item active hover-effect">
                             <div class="row">
                                 <div class="col">
-                                    <a href="index.php?controller=sanPham_view&id=<?php echo $productTop3["id_pro"]; ?>">
+                                    <a href="index.php?controller=sanPham_view&id=<?php echo $product["id_pro"]; ?>">
                                         <div class="image_5">
-                                            <img src="assets/imgs/item/<?php echo $productTop3["img"] ?>">
+                                            <img src="assets/imgs/item/<?php echo $product["img"]; ?>" class="img-fluid">
                                         </div>
                                     </a>
-
-                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -51,21 +50,25 @@ require_once 'view/globle/slideshow.php';
             if (isset($products) && is_array($products)) {
                 foreach ($products as $product) {
                     ?>
-                    <div class="card col p-0">
+                    <div class="card col p-0 product-card" style="border-style: none;">
                         <a href="index.php?controller=sanPham_view&id=<?php echo $product->id_pro; ?>">
-                            <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top" alt="...">
+                            <img src="assets/imgs/item/<?php echo $product->image ?>" class="card-img-top product-img"
+                                alt="...">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h5 class="card-title"
+                                        style="color: #000000;font-size: 18px;font-weight: 500; text-align: center;">
+                                        <?php echo $product->name; ?>
+                                    </h5>
+                                    <p class="card-text m-0">
+                                        <?php echo $product->price; ?>.000 VND
+                                    </p>
+                                    <p class="card-text">Lượt xem
+                                        <?php echo $product->luotxem; ?>
+                                    </p>
+                                </div>
+                            </div>
                         </a>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <?php echo $product->name; ?>
-                            </h5>
-                            <p class="card-text m-0"> 
-                                <?php echo $product->price; ?> VND
-                            </p>
-                            <p class="card-text">Lượt xem
-                                <?php echo $product->luotxem; ?>
-                            </p>
-                        </div>
                     </div>
                     <?php
                 }
@@ -75,6 +78,9 @@ require_once 'view/globle/slideshow.php';
             ?>
         </div>
     </div>
+
+</div>
+</div>
 
 </div>
 
