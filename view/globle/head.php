@@ -113,7 +113,7 @@
                             echo '</a>';
                             echo '</li>';
                             echo '<li class="nav-item">';
-                            echo '<a class="nav-link" href="index.php?controller=login&act=dangXuat">';
+                            echo '<a class="nav-link" href="index.php?controller=login&act=dangKy">';
                             echo '<button type="button">ĐĂNG KÝ</button>';
                             echo '</a>';
                             echo '</li>';

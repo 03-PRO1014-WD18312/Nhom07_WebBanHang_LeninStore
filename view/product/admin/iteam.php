@@ -130,8 +130,8 @@ require_once 'view/globle/headadmin.php';
                             foreach ($sanphams as $sanpham) {
                         ?>
                         <tr>
-                            <th><input type="checkbox" name="xoa[]" id="" value="<?php echo $sanpham->id; ?>"></td>
-                            <th><?php echo $sanpham->id; ?></th>
+                            <th><input type="checkbox" name="xoa[]" id="" value="<?php echo $sanpham->id_pro; ?>"></td>
+                            <th><?php echo $sanpham->id_pro; ?></th>
                             <th width="20%"><img src="assets/imgs/item/<?php echo $sanpham->image ?>" alt="img"
                                     width="10%"></th>
                             <td><?php echo $sanpham->name; ?></td>
@@ -139,9 +139,9 @@ require_once 'view/globle/headadmin.php';
                             <td><?php echo $sanpham->chitiet; ?></td>
                             <th><?php echo $sanpham->luotxem; ?></th>
                             <th><?php echo $sanpham->danhmuc; ?></th>
-                            <th><input type="button" onclick="fix(event)" id="<?php echo $sanpham->id; ?>" value="Sửa">
+                            <th><input type="button" onclick="fix(event)" id="<?php echo $sanpham->id_pro; ?>" value="Sửa">
                                 <input type="submit" value="Xóa"> <input type="hidden" name="id_x"
-                                    value="<?php echo $sanpham->id; ?>">
+                                    value="<?php echo $sanpham->id_pro; ?>">
                             </th>
                         </tr>
                         <?php
@@ -155,9 +155,8 @@ require_once 'view/globle/headadmin.php';
                     $totalProducts = $counts['total'];
                     $totalPages = ceil($totalProducts / 5);
 
-                    // Hiển thị liên kết trang
                     for ($i = 1; $i <= $totalPages; $i++) {
-                        echo "<button><a href='index.php?controller=hanghoa&&page=$i'> $i</a></button>";
+                        echo "<button><a href='index.php?controller=sanpham&&page=$i'> $i</a></button>";
                     }
                     ?>
                 </div>
@@ -171,7 +170,12 @@ require_once 'view/globle/headadmin.php';
     </div>
 </div>
 </div>
+
+
 <script>
+    console.log('Data:', <?php echo json_encode($sanphams); ?>);
+console.log('Category Data:', <?php echo json_encode($danhmucs); ?>);
+
 a = true
 <?php
     $Date = json_encode($sanphams);
@@ -199,32 +203,34 @@ function ext() {
 }
 
 function fix(event) {
+    console.log('Fix function called. Event ID:', event.target.id);
+
     var data = <?php echo $Date; ?>;
     var data_m = <?php echo $Date_m; ?>;
+    var targetId = parseInt(event.target.id);
+
     data.forEach((element) => {
-        if (element.id == event.target.id) {
-            data_m.forEach((e => {
-                if (element.danhmuc == e.name) {
+        console.log(targetId, element);
+        if (element.id_pro === targetId) {
+            data_m.forEach((e) => {
+                if (element.danhmuc === e.name) {
                     document.getElementById('iddm').value = e.id_d;
                     document.getElementById('iddm').innerHTML = e.name;
                 }
-            }));
+            });
+
             document.getElementById('table').style.display = "none";
-            document.getElementById('so')
-                .style.display = "none";
+            document.getElementById('so').style.display = "none";
             document.getElementById('fomfix').style.display = "block";
-            document
-                .getElementById('idsp').value = element.id;
-            document.getElementById('tensp').value = element
-                .name;
+            document.getElementById('idsp').value = element.id_pro;
+            document.getElementById('tensp').value = element.name;
             document.getElementById('img').src = "assets/imgs/item/" + element.image;
             document.getElementById('gia').value = element.price;
-            document.getElementById('mota').value =
-                element.chitiet;
-
+            document.getElementById('mota').value = element.chitiet;
         }
     });
 }
+
 const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', function() {
     const file = fileInput.files[0];

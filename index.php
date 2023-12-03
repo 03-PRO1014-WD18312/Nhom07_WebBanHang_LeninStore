@@ -29,8 +29,10 @@ switch ($controller) {
         $productController->danhmuc();
         break;
     case 'sanpham':
+        
         $productController = new ProductController();
         $productController->sanpham();
+        die;
         break;
     case 'khachang':
         $UserController = new UserController();
