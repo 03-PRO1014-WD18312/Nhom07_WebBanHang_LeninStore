@@ -21,7 +21,7 @@ class LoginDAO
 
     public function Login($username, $password)
     {
-        $sql = "SELECT `id_ac`, `user`, `anh`, `id_quyen`, `trang_thai` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
+        $sql = "SELECT `id_ac`, `user`, `anh`, `id_quyen`, `role`, `trang_thai` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
         $stmt = $this->PDO->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
@@ -32,6 +32,8 @@ class LoginDAO
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Thêm dữ liệu người dùng vào mảng
             $userData = $row;
+            print_r($userData);
+
         }
     
         // Xác định quyền (role) của người dùng từ dữ liệu
