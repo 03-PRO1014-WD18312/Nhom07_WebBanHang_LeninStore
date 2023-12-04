@@ -1,8 +1,3 @@
-<style>
-    a.svg {
-        margin-bottom: 50000px;
-    }
-</style>
 
 <head>
     <!-- basic -->
@@ -25,7 +20,7 @@
     <link rel="stylesheet" href="view/globle/css/headdropdown.css">
     <link rel="stylesheet" href="../globle/css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="view\globle\images\logo.png" type="image/gif" />
+    <link rel="icon" href="view/globle/images/logo.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="../globle/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -44,7 +39,7 @@
     <!-- header section start -->
     <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.php"><img src="view\globle\images\logo.png" alt="logo.png"></a></div>
+            <div class="logo"><a href="index.php"><img src="view/globle/images/logo.png" alt="logo.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
