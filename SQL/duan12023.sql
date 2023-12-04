@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 05:59 PM
+-- Generation Time: Dec 04, 2023 at 08:42 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,6 +57,64 @@ INSERT INTO `danhmuc` (`id_d`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `giohang`
+--
+
+CREATE TABLE `giohang` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `product_img` varchar(255) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_price` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `giohang`
+--
+
+INSERT INTO `giohang` (`id`, `product_id`, `user_id`, `quantity`, `created_at`, `product_img`, `product_name`, `product_price`) VALUES
+(84, 15, 1, 1, '2023-12-04 07:33:14', 'ao1.jpg', 'MUSHROOM BRAVE TEE', 450),
+(85, 16, 1, 1, '2023-12-04 07:41:28', 'ao3.jpg', 'METEORITE TEE', 450);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_price` double(10,2) DEFAULT NULL,
+  `product_img` varchar(255) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `total_price` double(10,2) DEFAULT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `customer_address` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `product_name`, `product_price`, `product_img`, `quantity`, `total_price`, `customer_name`, `customer_address`, `phone_number`, `order_date`) VALUES
+(1, NULL, 'RIPPED KNEE JEANS', 650.00, 'quan1.jpg', 1, NULL, 'tuấn anh', 'số 4 ngõ 80 phú kiều kiều mai', '0862939965', '2023-12-03 05:53:25'),
+(2, NULL, 'GREEN SPEED FIRE TEE', 450.00, 'ao8.png', 1, NULL, 'tuấn anh', 'số 4 ngõ 80 phú kiều kiều mai', '0862939965', '2023-12-03 05:53:25'),
+(6, NULL, '4-HOLE PUNCHER WHITE SHORT', 540.00, 'quan5.jpg', 1, NULL, 'tuấn anh', '4re444etg', '2423532', '2023-12-03 06:13:54'),
+(7, NULL, 'MUSHROOM BRAVE TEE', 450.00, 'ao1.jpg', 1, NULL, 'tuấn anh', 'số 4 ngõ 80 phú kiều kiều mai', '0862939965', '2023-12-03 06:21:11'),
+(8, NULL, 'EMBROIDERED DUCK LOGO DENIM JEANS', 560.00, 'quan2.jpg', 1, NULL, 'tuấn anh', 'số 4 ngõ 80 phú kiều kiều mai', '0862939965', '2023-12-03 06:21:11'),
+(9, NULL, 'MUSHROOM BRAVE TEE', 450.00, 'ao1.jpg', 1, NULL, 'lê tuấn anh', 'cao đẳng fpt', '0862939965', '2023-12-03 06:26:59'),
+(10, NULL, 'METEORITE TEE', 450.00, 'ao3.jpg', 1, NULL, 'lê tuấn anh', 'cao đẳng fpt', '0862939965', '2023-12-03 06:26:59');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sanpham`
 --
 
@@ -76,16 +134,16 @@ CREATE TABLE `sanpham` (
 
 INSERT INTO `sanpham` (`id_pro`, `name_sp`, `price`, `img`, `mota`, `luotxem`, `iddm`) VALUES
 (14, 'LENINN FARM TEE', 456.00, 'ao2.png', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
-(15, 'MUSHROOM BRAVE TEE', 450.00, 'ao1.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
-(16, 'METEORITE TEE', 450.00, 'ao3.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 0, 3),
+(15, 'MUSHROOM BRAVE TEE', 450.00, 'ao1.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 16, 3),
+(16, 'METEORITE TEE', 450.00, 'ao3.jpg', 'Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn,biến dạng, giúp sợi vải xốp hơn, thân thiện và mềm mại trên da.', 7, 3),
 (17, 'LENINN BLACK SOCCER JERSEY', 550.00, 'ao4.png', 'Cấu thành vải theo tiêu chuẩn áo thể thao chuyên nghiệp với 30% sợi polyester tái chế.\r\n\r\n◾️ In lưới chuyển nhiệt khổ lớn, sắc nét, thẩm thấu sâu vào bề mặt vải.\r\n\r\n◾️Mix chất liệu lưới bên hông giúp sản phẩm thoáng khí, thoát hơi, thấm hút mồ hôi tốt.', 0, 3),
 (20, 'BLACK SPEED FIRE TEE', 450.00, 'ao8.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
-(21, 'GREEN SPEED FIRE TEE', 450.00, 'ao8.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
-(22, 'GREEN SPEED FIRE TEE', 450.00, 'ao7.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 0, 3),
-(23, 'RIPPED KNEE JEANS', 650.00, 'quan1.jpg', '◾️Quần chất liệu denim, wash bạc, cắt ghép chất liệu, làm rách trước sau có chủ đích, raw cut phần gấu...\r\n◾️Form baggy\r\n◾️Logo thêu phía sau túi trái\r\n◾️Có dây rút tăng chỉnh kích thước vòng eo linh hoạt.', 0, 4),
-(24, 'EMBROIDERED DUCK LOGO DENIM JEANS', 560.00, 'quan2.jpg', '', 0, 4),
-(25, '4-HOLE PUNCHER WHITE SHORT', 540.00, 'quan5.jpg', '· Drawstring at elasticized waistband\r\n· Four-pocket styling\r\n· Frayed edge at cuffs\r\n· Logo-engraved black-tone hardware\r\n· Logo embroidered at leg\r\n· Graphic printed at back', 0, 4),
-(26, '4-HOLE PUNCHER BLACK TAILORED PANTS', 1250.00, 'quan4.jpg', 'Wool twill flared pants.\r\n\r\n· Belt loops\r\n· Adjustable mini cinch belts at waist\r\n· Zip-fly\r\n· Pleats at front', 0, 4),
+(21, 'GREEN SPEED FIRE TEE', 450.00, 'ao8.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 2, 3),
+(22, 'GREEN SPEED FIRE TEE', 450.00, 'ao7.png', '◾️Định lượng cotton lên tới 280gsm tạo form dáng ổn định sau nhiều lần sử dụng.\r\n\r\n◾️In lụa ép nhiệt logo phía trước, hình in sắc nét bền màu.\r\n\r\n◾️Công nghệ Enzyme wash cả cây vải tạo độ mềm, chống co giãn hay biến dạng, làm sợi vải xốp hơn, thân thiện và mềm mại trên da.\r\n\r\n◾️Oversized fit.\r\n\r\n◾️Drop shoulder', 4, 3),
+(23, 'RIPPED KNEE JEANS', 650.00, 'quan1.jpg', '◾️Quần chất liệu denim, wash bạc, cắt ghép chất liệu, làm rách trước sau có chủ đích, raw cut phần gấu...\r\n◾️Form baggy\r\n◾️Logo thêu phía sau túi trái\r\n◾️Có dây rút tăng chỉnh kích thước vòng eo linh hoạt.', 2, 4),
+(24, 'EMBROIDERED DUCK LOGO DENIM JEANS', 560.00, 'quan2.jpg', '', 4, 4),
+(25, '4-HOLE PUNCHER WHITE SHORT', 540.00, 'quan5.jpg', '· Drawstring at elasticized waistband\r\n· Four-pocket styling\r\n· Frayed edge at cuffs\r\n· Logo-engraved black-tone hardware\r\n· Logo embroidered at leg\r\n· Graphic printed at back', 8, 4),
+(26, '4-HOLE PUNCHER BLACK TAILORED PANTS', 1250.00, 'quan4.jpg', 'Wool twill flared pants.\r\n\r\n· Belt loops\r\n· Adjustable mini cinch belts at waist\r\n· Zip-fly\r\n· Pleats at front', 4, 4),
 (27, '4-HOLE PUNCHER NAVY SHORTS', 450.00, '', '· Drawstring at elasticized waistband\r\n· Four-pocket styling\r\n· Frayed edge at cuffs\r\n· Logo-engraved black-tone hardware\r\n· Logo embroidered at leg\r\n· Graphic printed at back', 0, 4),
 (28, 'GREEN POLAR TRACK PANTS', 590.00, 'quan7.png', '◾️Vải gió tráng nhựa với hai túi hộp lớn kèm zip\r\n\r\n◾️Có dây rút tăng chỉnh gấu quần linh hoạt\r\n\r\n◾️Hai line phản quang chạy dọc bên hông\r\n\r\n◾️Logo In chuyển nhiệt', 0, 4);
 
@@ -120,22 +178,25 @@ INSERT INTO `slideshow` (`image_path`, `image_name`, `image_description`, `id_sl
 
 CREATE TABLE `taikhoan` (
   `id_ac` int(11) NOT NULL,
+  `anh` varchar(255) NOT NULL DEFAULT 'hihi.jpg',
   `user` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
-  `role` int(11) NOT NULL DEFAULT 0
+  `role` int(11) NOT NULL DEFAULT 0,
+  `id_quyen` int(11) NOT NULL DEFAULT 4,
+  `trang_thai` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`id_ac`, `user`, `pass`, `email`, `address`, `tel`, `role`) VALUES
-(1, 'admin', '123456', 'admin@fpt.edu.vn', 'hanoi', '123', 1),
-(2, 'khanh', '123', 'tokhanh@fpt.edu.vn', 'hanoi', '123', 1),
-(3, 'hihi@gmail.com', 'hihi@gmail.com', 'hihi@gmail.com', NULL, NULL, 1);
+INSERT INTO `taikhoan` (`id_ac`, `anh`, `user`, `pass`, `email`, `address`, `tel`, `role`, `id_quyen`, `trang_thai`) VALUES
+(1, '', 'admin', '123456', 'admin@fpt.edu.vn', 'hanoi', '123', 1, 4, 1),
+(2, '', 'khanh', '123', 'tokhanh@fpt.edu.vn', 'hanoi', '123', 1, 4, 1),
+(3, '', 'hihi@gmail.com', 'hihi@gmail.com', 'hihi@gmail.com', NULL, NULL, 1, 4, 1);
 
 --
 -- Indexes for dumped tables
@@ -154,6 +215,18 @@ ALTER TABLE `binhluan`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id_d`);
+
+--
+-- Indexes for table `giohang`
+--
+ALTER TABLE `giohang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sanpham`
@@ -189,6 +262,18 @@ ALTER TABLE `binhluan`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id_d` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `giohang`
+--
+ALTER TABLE `giohang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
