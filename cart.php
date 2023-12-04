@@ -53,6 +53,7 @@ try {
                         <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
                                 style="width: 50px;"></td>
                         <td><?php echo $item['created_at']; ?></td>
+                     
                         <td>
                             <form method="post" action="deletecart.php">
                                 <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">

@@ -51,7 +51,6 @@ class ProductController
             $ProductDAO = new ProductDAO();
             $products = $ProductDAO->Select();
             $danhmucs = $ProductDAO->showDanhMuc();
-            $ProductDAO = new ProductDAO();
         if (isset($_POST['add']) && $_POST['add'] != '') {
             $ProductDAO->addPRO($_POST['tensanpam'], $_POST['gia'], $_FILES['img'], $_POST['mota'], $_POST['iddm']);
         }

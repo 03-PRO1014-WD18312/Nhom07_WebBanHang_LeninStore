@@ -10,34 +10,30 @@
 </head>
 
 <body>
-    <h3>
+    <!-- <h3>
         <?php if($row ?? false){
             $_SESSION['login'] = $row['role'];
             header("location: home.php");
         }else{
             echo("Sai ten dang nhap/mat khau");
         } ?>
-    </h3>
+    </h3> -->
     <div class="container" id="container">
         
         <div class="form-container sign-in-container">
-            <form action="index.php?controller=login&act=do-login" method="post">
-                <h1>Sign in</h1>
+            <form action="index.php?controller=login&act=do-signup" method="post">
+                <h1>Sign up</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your account</span>
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
-                <a href="index.php?controller=quenMatKhau">Forgot your password?</a>
-                <button>Sign In</button>
-        <a href="index.php?controller=login&act=signup">Sign up</a>
-
+                <button>Sign Up</button>
+                <a href="index.php?controller=login&act=login">Sign in</a>
             </form>
         </div>
-
     </div>
 </body>
 
