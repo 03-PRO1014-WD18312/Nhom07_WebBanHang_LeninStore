@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // Include các tệp và khởi tạo các controller
 include 'controller/HomeController.php';
 include 'controller/ProductController.php';
@@ -8,14 +9,16 @@ include 'controller/UserController.php';
 $controller = $_GET['controller'] ?? 'home';
 
 switch ($controller) {
-    case 'dangNhap':
-        $LoginController = new LoginController();
-        $LoginController->index();
-        break;
-    case 'dangKy':
-        $LoginController = new LoginController();
-        $LoginController->signup();
-        break;
+
+
+    // case 'dangNhap':
+    //     $LoginController = new LoginController();
+    //     $LoginController->index();
+    //     break;
+    // case 'dangKy':
+    //     $LoginController = new LoginController();
+    //     $LoginController->signup();
+    //     break;
     case 'dangXuat':
         $LoginController = new LoginController();
         $LoginController->logout();
@@ -29,10 +32,9 @@ switch ($controller) {
         $productController->danhmuc();
         break;
     case 'sanpham':
-        
+
         $productController = new ProductController();
         $productController->sanpham();
-        die;
         break;
     case 'khachang':
         $UserController = new UserController();
@@ -50,22 +52,27 @@ switch ($controller) {
         $SanPhamController = new ProductController();
         $SanPhamController->productDetail();
         break;
-        case 'taiKhoan':
-            $TaiKhoansController = new TaiKhoanController();
-            $TaiKhoansController->index();
-            break;
-        case 'taiKhoan_add':
-            $TaiKhoansController = new TaiKhoanController();
-            $TaiKhoansController->add();
-            break;
-        case 'taiKhoan_fix':
-            $TaiKhoansController = new TaiKhoanController();
-            $TaiKhoansController->fix();
-            break;
-        case 'taiKhoan_delete':
-            $TaiKhoansController = new TaiKhoanController();
-            $TaiKhoansController->delete();
-            break;
+    case 'taiKhoan':
+        // Truyền đối tượng PDO vào UserController
+        $UserController = new UserController();
+        $UserController->index();
+        break;
+    case 'taiKhoan_add':
+        $UserController = new UserController();
+        $UserController->add();
+        break;
+    case 'taiKhoan_fix':
+        $UserController = new UserController();
+        $UserController->edit();
+        break;
+    case 'taiKhoan_delete':
+        $UserController = new UserController();
+        $UserController->delete();
+        break;
+    case 'save_edit':
+        $UserController = new UserController();
+        $UserController->saveEdit();
+        break;
     case 'product':
         if (isset($_GET["act"])) {
             if ($_GET['act'] == 'add') {
@@ -94,22 +101,27 @@ switch ($controller) {
         }
         break;
     case 'login':
-        if ($_GET['act'] == 'signup') {
+        if (isset($_GET['act'])) {
+            $act = $_GET['act'];
             $LoginController = new LoginController();
-            $LoginController->index();
-        } elseif ($_GET['act'] == 'signin') {
-            $LoginController = new LoginController();
-            $LoginController->login();
+
+            if ($act == 'signup') {
+                $LoginController->signup();
+            } elseif ($act == 'login') {
+                $LoginController->login();
+            } elseif ($act == 'do-signup') {
+                $LoginController->doSignup();
+            } elseif ($act == 'do-login') {
+                $LoginController->doLogin();
+            }
+
+            if (isset($_SESSION["role"])) {
+                // Truyền đối tượng PDO vào UserController
+                $UserController = new UserController();
+                $UserController->index();
+            } else {
+                $LoginController->index();
+            }
         }
-        if (isset($_SESSION["role"])) {
-            $UserController = new UserController();
-            $UserController->index();
-        } else {
-            $LoginController = new LoginController();
-            $LoginController->index();
-        }
-        break;
-    default:
-        // Xử lý controller không hợp lệ
         break;
 }
