@@ -1,39 +1,108 @@
+<?php require_once 'view/globle/head.php'; ?>
+
 <?php
-include_once 'view/globle/head.php';
-?>
 
-<div>
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
-    $productId = $_POST['product_id'];
-    $productName = $_POST['product_name'];
-    $productPrice = $_POST['product_price'];
-    $productImage = $_POST['product_img'];
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "duan12023";
 
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["buy_all"])) {
+        // Get the selected product IDs
+        $selectedProducts = isset($_POST['selected_products']) ? $_POST['selected_products'] : [];
 
-    echo "<p>$productName</p>";
-    echo "<p>$productPrice VND</p>";
-    echo "<p><img src='assets/imgs/item/$productImage' alt='$productName'></p>";
-    echo "<form action='success.php' method='post'>";
-    echo "<input type='hidden' name='product_id' value='$productId'>";
-    echo "<input type='hidden' name='product_name' value='$productName'>";
-    echo "<input type='hidden' name='product_price' value='$productPrice'>";
-    echo "<input type='hidden' name='product_img' value='$productImage'>";
-    echo "<p>Họ Tên: <input type='text' name='name' required></p>";
-    echo "<p>Địa Chỉ Giao Hàng: <input type='text' name='address'></p>";
-    echo "<p>Số Điện Thoại: <input type='tel' name='phone'></p>";
-    echo "<h3>Tổng tiền: $productPrice VND</h3>";
-    echo "<p><button type='submit' name='submit'>MUA</button></p>";
-    echo "</form>";
-
-} else {
-    // Redirect to the home page or display an error message if the form was not submitted correctly
-    header("Location: index.php");
-    exit();
+        if (!empty($selectedProducts)) {
+            // Fetch selected products from the database
+            $placeholders = implode(",", array_fill(0, count($selectedProducts), "?"));
+            $query = $conn->prepare("SELECT * FROM giohang WHERE product_id IN ($placeholders)");
+            $query->execute($selectedProducts);
+            $selectedItems = $query->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            echo "Không có sản phẩm nào được chọn!";
+        }
+    }
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>
-</div>
-<?php
-require_once 'view/globle/footer.php';
-?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <?php if (!empty($selectedItems)): ?>
+            <h2>Thông tin đơn hàng</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tên Sản phẩm</th>
+                        <th>Ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($selectedItems as $item): ?>
+                        <tr>
+                            <td>
+                                <?php echo $item['product_name']; ?>
+                            </td>
+                            <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
+                                    style="width: 50px;"></td>
+                            <td>
+                                <?php echo $item['quantity']; ?>
+                            </td>
+                            <td>
+                                <?php echo $item['product_price']; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
+            <h2>Thông tin khách hàng</h2>
+            <form method="post" action="success.php">
+                <div class="form-group">
+                    <label for="name">Tên khách hàng:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Địa Chỉ:</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">SĐT:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+
+                <input type="hidden" name="selected_products" value="<?php echo implode(',', $selectedProducts); ?>">
+
+                <button type="submit" class="btn btn-primary" name="submit">Đặt hàng</button>
+            </form>
+        <?php endif; ?>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (order matters) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <?php require_once 'view/globle/footer.php'; ?>
+</body>
+
+</html>

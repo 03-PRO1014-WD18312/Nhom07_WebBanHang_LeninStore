@@ -1,6 +1,5 @@
+<?php require_once 'view/globle/head.php'; ?>
 <?php
-require_once 'view/globle/head.php';
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -15,24 +14,17 @@ try {
     $query->execute();
     $cartItems = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    // Khởi tạo biến tổng tiền
+    $totalPrice = 0;
+
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
-</head>
-
-<body>
-
-    <?php if (!empty($cartItems)) : ?>
-        <table>
+<?php if (!empty($cartItems)): ?>
+    <form method="post" action="checkout.php">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Tên Sản phẩm</th>
@@ -40,50 +32,87 @@ try {
                     <th>Giá</th>
                     <th>Ảnh</th>
                     <th>Ngày Đặt</th>
-                    <th></th>
+                    <th>Chọn</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cartItems as $item) : ?>
+                <?php foreach ($cartItems as $item): ?>
                     <tr>
-                        <td><?php echo $item['product_name']; ?></td>
-                        <td><?php echo $item['quantity']; ?></td>
-                        <td><?php echo $item['product_price']; ?></td>
+                        <td>
+                            <?php echo $item['product_name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['quantity']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['product_price']; ?>
+                        </td>
                         <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
                                 style="width: 50px;"></td>
-                        <td><?php echo $item['created_at']; ?></td>
-                     
+                        <td>
+                            <?php echo $item['created_at']; ?>
+                        </td>
+
+                        <td>
+                            <input type="checkbox" name="selected_products[]" value="<?php echo $item['product_id']; ?>"
+                                data-price="<?php echo $item['product_price']; ?>"
+                                data-quantity="<?php echo $item['quantity']; ?>">
+                        </td>
                         <td>
                             <form method="post" action="deletecart.php">
                                 <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                <button class="xoa" type="submit">Xoá</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form method="post" action="checkout.php">
-                                <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                <input type="hidden" name="product_name" value="<?php echo $item['product_name']; ?>">
-                                <input type="hidden" name="product_price" value="<?php echo $item['product_price']; ?>">
-                                <input type="hidden" name="product_img" value="<?php echo $item['product_img']; ?>">
-                                <button type="submit" class="mua" name="buy_now">Mua ngay</button>
+                                <button class="btn btn-danger" type="submit">Xoá</button>
                             </form>
                         </td>
                     </tr>
+                    <?php
+                    // Tính tổng tiền
+                    $totalPrice += ($item['quantity'] * $item['product_price']);
+                    ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <form method="post" action="index.php">
-            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
-        </form>
-    <?php else : ?>
-        <p>Giỏ hàng trống.</p>
-        <form method="post" action="index.php">
-            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
-        </form>
-    <?php endif; ?>
 
-    <?php require_once 'view/globle/footer.php'; ?>
-</body>
+        <!-- Hiển thị tổng tiền -->
+        <p>Tổng tiền: <span id="totalPrice">0</span> VND</p>
 
-</html>
+        <button type="submit" class="btn btn-success" name="buy_all">Mua </button>
+        <a href="index.php?controller=product" class="btn btn-primary">Tiếp Tục Mua Hàng</a>
+    </form>
+
+    <script>
+        // JavaScript function để cập nhật tổng tiền khi checkbox thay đổi
+        function updateTotal() {
+            var checkboxes = document.querySelectorAll('input[name="selected_products[]"]');
+            var totalPrice = 0;
+
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    // Lấy giá và số lượng từ data-* attributes
+                    var price = parseFloat(checkbox.getAttribute('data-price'));
+                    var quantity = parseInt(checkbox.getAttribute('data-quantity'));
+
+                    // Cập nhật tổng tiền
+                    totalPrice += price * quantity;
+                }
+            });
+
+            // Hiển thị tổng tiền
+            document.getElementById('totalPrice').innerText = totalPrice.toLocaleString('vi-VN');
+        }
+
+        // Lắng nghe sự kiện thay đổi của checkbox
+        var checkboxes = document.querySelectorAll('input[name="selected_products[]"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', updateTotal);
+        });
+    </script>
+<?php else: ?>
+    <p>Giỏ hàng trống.</p>
+    <form method="post" action="index.php">
+        <button type="submit" class="btn btn-primary">Tiếp tục mua</button>
+    </form>
+<?php endif; ?>
+
+<?php require_once 'view/globle/footer.php'; ?>

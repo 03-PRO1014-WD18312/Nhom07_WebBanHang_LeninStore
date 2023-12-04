@@ -1,61 +1,61 @@
 <style>
     body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-h2 {
-    color: #333;
-    text-align: center;
-    padding: 20px 0;
-}
+    h2 {
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+    }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
 
-th {
-    background-color: #f2f2f2;
-}
+    th {
+        background-color: #f2f2f2;
+    }
 
-img {
-    max-width: 50px;
-    max-height: 50px;
-}
+    img {
+        max-width: 50px;
+        max-height: 50px;
+    }
 
-form {
-    display: inline-block;
-    margin-right: 5px;
-}
+    form {
+        display: inline-block;
+        margin-right: 5px;
+    }
 
-button {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    button {
+        background-color: #555;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-button:hover {
-    background-color: #333;
-}
+    button:hover {
+        background-color: #333;
+    }
 
-p {
-    color: #333;
-    text-align: center;
-}
-
+    p {
+        color: #333;
+        text-align: center;
+    }
 </style>
 <?php
 $servername = "localhost";
@@ -90,6 +90,6 @@ try {
 }
 
 ?>
- <form method="post" action="index.php">
-            <button type="submit" class="continue-shopping">Tiếp tục mua</button>
-        </form>
+<form method="post" action="index.php">
+    <button type="submit" class="continue-shopping">Tiếp tục mua</button>
+</form>
