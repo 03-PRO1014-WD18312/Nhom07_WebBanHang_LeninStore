@@ -22,7 +22,7 @@ try {
 }
 ?>
 
-<?php if (!empty($cartItems)) : ?>
+<?php if (!empty($cartItems)): ?>
     <form method="post" action="checkout.php">
         <table class="table table-striped">
             <thead>
@@ -37,18 +37,25 @@ try {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cartItems as $item) : ?>
+                <?php foreach ($cartItems as $item): ?>
                     <tr>
-                        <td><?php echo $item['product_name']; ?></td>
-                        <td><?php echo $item['quantity']; ?></td>
-                        <td><?php echo $item['product_price']; ?></td>
+                        <td>
+                            <?php echo $item['product_name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['quantity']; ?>
+                        </td>
+                        <td>
+                            <?php echo $item['product_price']; ?>
+                        </td>
                         <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
                                 style="width: 50px;"></td>
-                        <td><?php echo $item['created_at']; ?></td>
+                        <td>
+                            <?php echo $item['created_at']; ?>
+                        </td>
 
                         <td>
-                            <input type="checkbox" name="selected_products[]"
-                                value="<?php echo $item['product_id']; ?>"
+                            <input type="checkbox" name="selected_products[]" value="<?php echo $item['product_id']; ?>"
                                 data-price="<?php echo $item['product_price']; ?>"
                                 data-quantity="<?php echo $item['quantity']; ?>">
                         </td>
@@ -101,7 +108,7 @@ try {
             checkbox.addEventListener('change', updateTotal);
         });
     </script>
-<?php else : ?>
+<?php else: ?>
     <p>Giỏ hàng trống.</p>
     <form method="post" action="index.php">
         <button type="submit" class="btn btn-primary">Tiếp tục mua</button>

@@ -198,6 +198,7 @@ class ProductDAO
             $stmt->execute();
         }
     }
+    
     public function show()
     {
         $sql = "SELECT * FROM `sanpham` ORDER BY `id_pro` DESC;";

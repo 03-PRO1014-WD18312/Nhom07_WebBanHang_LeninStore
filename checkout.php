@@ -43,7 +43,7 @@ try {
 
 <body>
     <div class="container mt-5">
-        <?php if (!empty($selectedItems)) : ?>
+        <?php if (!empty($selectedItems)): ?>
             <h2>Thông tin đơn hàng</h2>
             <table class="table">
                 <thead>
@@ -55,13 +55,19 @@ try {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($selectedItems as $item) : ?>
+                    <?php foreach ($selectedItems as $item): ?>
                         <tr>
-                            <td><?php echo $item['product_name']; ?></td>
+                            <td>
+                                <?php echo $item['product_name']; ?>
+                            </td>
                             <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
                                     style="width: 50px;"></td>
-                            <td><?php echo $item['quantity']; ?></td>
-                            <td><?php echo $item['product_price']; ?></td>
+                            <td>
+                                <?php echo $item['quantity']; ?>
+                            </td>
+                            <td>
+                                <?php echo $item['product_price']; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -47,7 +47,7 @@ try {
             // Move the HTML code outside of the PHP block
             ?>
             <form method="post" action="thongtindonhang.php">
-            
+
                 <input type="submit" name="submit" value="Xem Thông Tin Đơn Hàng">
             </form>
 
