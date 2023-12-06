@@ -20,38 +20,38 @@ class LoginDAO
     }
 
     public function Login($username, $password)
-    {
-        $sql = "SELECT `id_ac`, `user`, `anh`, `role`, `trang_thai` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
-        $stmt = $this->PDO->prepare($sql);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-        $stmt->execute();
-    
-        $userData = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Thêm dữ liệu người dùng vào mảng
-            $userData = $row;
-        }
-    
-        // Xác định quyền (role) của người dùng từ dữ liệu
-        if(count($userData) > 0){
-            $userRole = $userData['role'];
+{
+    $sql = "SELECT `id_ac`, `user`, `anh`, `role`, `trang_thai`, `email`, `address`, `tel` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
+    $stmt = $this->PDO->prepare($sql);
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
 
-        }
-        return $userRole ?? null;
-    }
+    $stmt->execute();
+
+    // Fetch dữ liệu từ CSDL
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Xác định quyền (role) của người dùng từ dữ liệu
+    return $row ?? null;
+}
+
+    
     
 
-    public function signup($email, $password)
+    public function signup($email, $password, $address, $tel)
     {
-        $sql = "INSERT INTO `taikhoan`(`email`, `pass`) VALUES (:email, :password)";
+        $sql = "INSERT INTO `taikhoan`(`email`, `pass`, `address`, `tel`) VALUES (:email, :password, :address, :tel)";
         $stmt = $this->PDO->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+        $stmt->bindParam(':tel', $tel, PDO::PARAM_STR);
         if ($stmt->execute()) {
-            // Nếu thêm thành công, gán session
+            var_dump( $_SESSION['address'] = $address);
             $_SESSION['username'] = $email;
             $_SESSION['password'] = $password;
+            $_SESSION['address'] = $address;
+            $_SESSION['tel'] = $tel;
         }
     }
 }

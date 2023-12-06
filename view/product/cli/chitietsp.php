@@ -15,11 +15,13 @@ require_once 'view/globle/head.php'; ?>
     margin: 4px 2px;
     cursor: pointer;
   }
+
   .button4 {
     background-color: rgba(209, 213, 219, 1);
 
     color: black;
   }
+
   .button5 {
     background-color: #555555;
   }
@@ -63,42 +65,42 @@ $productCategory = $product->danhmuc;
         <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
         <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
         <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "duan12023";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "duan12023";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
-        $productId = $_POST["product_id"];
-        $productName = $_POST["product_name"];
-        $productPrice = $_POST["product_price"];
-        $productImage = $_POST["product_img"];
-        $quantity = 1; // Hoặc có thể lấy từ form nếu có
+          if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])) {
+            $productId = $_POST["product_id"];
+            $productName = $_POST["product_name"];
+            $productPrice = $_POST["product_price"];
+            $productImage = $_POST["product_img"];
+            $quantity = 1; // Hoặc có thể lấy từ form nếu có
+        
+            // Sử dụng prepared statement để tránh SQL injection
+            $query = $conn->prepare("INSERT INTO giohang (product_id, user_id, quantity, product_name, product_price, product_img) VALUES (:productId, '1', :quantity, :productName, :productPrice, :productImage)");
+            $query->bindParam(':productId', $productId);
+            $query->bindParam(':quantity', $quantity);
+            $query->bindParam(':productName', $productName);
+            $query->bindParam(':productPrice', $productPrice);
+            $query->bindParam(':productImage', $productImage);
 
-        // Sử dụng prepared statement để tránh SQL injection
-        $query = $conn->prepare("INSERT INTO giohang (product_id, user_id, quantity, product_name, product_price, product_img) VALUES (:productId, '1', :quantity, :productName, :productPrice, :productImage)");
-        $query->bindParam(':productId', $productId);
-        $query->bindParam(':quantity', $quantity);
-        $query->bindParam(':productName', $productName);
-        $query->bindParam(':productPrice', $productPrice);
-        $query->bindParam(':productImage', $productImage);
+            $result = $query->execute();
 
-        $result = $query->execute();
-
-        if ($result) {
-            echo "Sản phẩm đã được thêm vào giỏ hàng!";
-        } else {
-            echo "Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng!";
+            if ($result) {
+              echo "Sản phẩm đã được thêm vào giỏ hàng!";
+            } else {
+              echo "Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng!";
+            }
+          }
+        } catch (PDOException $e) {
+          echo "Connection failed: " . $e->getMessage();
         }
-    }
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-?>
+        ?>
         <button type="submit" class="button button4" name="add_to_cart">Thêm vào giỏ hàng</button>
 
       </form>

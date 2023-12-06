@@ -32,7 +32,6 @@ switch ($controller) {
         $productController->danhmuc();
         break;
     case 'sanpham':
-
         $productController = new ProductController();
         $productController->sanpham();
         break;
@@ -52,8 +51,7 @@ switch ($controller) {
         $SanPhamController = new ProductController();
         $SanPhamController->productDetail();
         break;
-    case 'taiKhoan':
-        // Truyền đối tượng PDO vào UserController
+    case 'taiKhoan':      
         $UserController = new UserController();
         $UserController->index();
         break;

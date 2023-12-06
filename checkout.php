@@ -76,8 +76,8 @@ try {
             <h2>Thông tin khách hàng</h2>
             <form method="post" action="success.php">
                 <div class="form-group">
-                    <label for="name">Tên khách hàng:</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label for="name">Tên Khách Hàng</label>
+                    <input type="text" class="form-control" id="name" name="name"  value="<?php echo isset($_COOKIE['username']) ? $_COOKIE['username'] : ''; ?>" required>
                 </div>
 
                 <div class="form-group">

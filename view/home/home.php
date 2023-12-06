@@ -2,7 +2,6 @@
 require_once 'view/globle/head.php';
 require_once 'view/globle/slideshow.php';
 ?>
-
 <link rel="stylesheet" href="view/home/style.css">
 <div class="product-tabs section-padding">
     <div class="bg-square"></div>
@@ -35,7 +34,6 @@ require_once 'view/globle/slideshow.php';
             </div>
         </div>
     </div>
-
     <!-- template section end -->
     <!-- design section start -->
     <div class="design_section layout_padding">
@@ -78,10 +76,7 @@ require_once 'view/globle/slideshow.php';
             ?>
         </div>
     </div>
-
 </div>
 </div>
-
 </div>
-
 <?php require_once 'view/globle/footer.php'; ?>
