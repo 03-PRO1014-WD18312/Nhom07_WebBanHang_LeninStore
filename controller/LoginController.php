@@ -21,25 +21,30 @@ class LoginController
     {
         $username = $_POST['email'] ?? null;
         $password = $_POST['password'] ?? null;
-        
+        $address = $_POST['address'] ?? null;
+        $tel = $_POST['tel'] ?? null;
+    
         $loginDAO = new LoginDAO();
-        $userInfo = $loginDAO->login($username, $password);
+        $userInfo = $loginDAO->login($username, $password, $address, $tel);
         
-        if ($userInfo) {
-            // Lấy vai trò (role) từ dữ liệu người dùng
-
-            $role = $userInfo;
-            // print_r($role);
-
-            // // Thiết lập cookie cho vai trò (role)
+        if ($userInfo !== null) {
+            $role = $userInfo["role"];
+            $username = $userInfo["email"];
+    
+            // Thiết lập cookie cho vai trò (role) và thông tin người dùng
             setcookie("role", $role, time() + 3600, "/");
-
+            setcookie("username", $username, time() + 3600, "/");
+            setcookie('is_login', true, time() + 3600, "/");
+            setcookie('address', true, time() + 3600, "/");
+            setcookie('tel', true, time() + 3600, "/");
+            
             // Chuyển hướng sau khi đăng nhập thành công
             header("Location: index.php?controller=home");
             exit();
         } else {
             // Đăng nhập thất bại, xử lý lỗi ở đây (ví dụ: thông báo lỗi)
-            header("Location: index.php?controller=home");
+            header("Location: index.php?controller=login&act=login");
+            exit();
         }
     }
     public function signup()
@@ -48,25 +53,37 @@ class LoginController
     }
     public function doSignup()
     {
+      
+       
         if (isset($_SESSION['username'])) {
             
             header("Location: index.php?controller=login&act=login");
+
         } else {
             if (isset($_SESSION['role'])) {
-                
                 header("Location: index.php?controller=login&act=login");
             } else {
-                if (isset($_POST['email'])) {
-                    
-                    $LoginDAO = new LoginDAO();
-                    $LoginDAO->signup($_POST['email'], $_POST['password']);
+                if (isset($_SESSION['address'])) {
+
                     header("Location: index.php?controller=login&act=login");
                 } else {
-                    header("Location: index.php?controller=login&act=signup");
+                    if (isset($_SESSION['tel'])) {
+
+                        header("Location: index.php?controller=login&act=login");
+                    } else {
+                        if (isset($_POST['email'])) {
+                            $LoginDAO = new LoginDAO();
+                            $LoginDAO->signup($_POST['email'], $_POST['password'], $_POST['address'], $_POST['tel']);
+                            header("Location: index.php?controller=login&act=login");
+                        } else {
+                            header("Location: index.php?controller=login&act=signup");
+                        }
+                    }
                 }
             }
         }
     }
+
     public function logout()
     {
         $_SESSION = array();
@@ -82,7 +99,10 @@ class LoginController
         // Clear any additional cookies you may have set
         // Replace 'cookie_name' with the name of your cookie
         setcookie('role', '', time() - 3600, '/');
-
+        setcookie('username', '', time() - 3600, '/');
+        setcookie('is_login', false, time() - 3600, '/');
+        setcookie('address', '', time() - 3600, '/');
+        setcookie('tel', '', time() - 3600, '/');
         // Redirect to the login page or any other desired page after logout
         header('Location: index.php?controller=login&act=login');
         exit();

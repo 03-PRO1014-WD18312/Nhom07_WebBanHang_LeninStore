@@ -1,3 +1,5 @@
+<?php require_once 'view/globle/headadmin.php';
+ ?>
 <div class="container mt-5">
     <h2>Thông Tin Tất Cả Đơn Hàng</h2>
     <?php if (!empty($orders)): ?>

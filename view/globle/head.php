@@ -95,7 +95,7 @@
 
                 </div>
                 <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['username'])): ?>
+                    <?php if (isset($_COOKIE['username'])): ?>
                         <!-- Người dùng đã đăng nhập -->
                         <li class="nav-item">
                             <a class="nav-link" href="view\user\profile.php">Tài Khoản</a>
@@ -104,7 +104,7 @@
                             <a class="nav-link" href="index.php?controller=dangXuat">Đăng Xuất</a>
                         </li>
                     <?php else:
-                        if (empty($_SESSION['username'])) {
+                        if (empty($_COOKIE['username'])) {
                             // Người dùng chưa đăng nhập
                             echo '<li class="nav-item">';
                             echo '<a class="nav-link" href="index.php?controller=login&act=login">';

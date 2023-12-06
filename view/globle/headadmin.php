@@ -11,7 +11,7 @@
             <li><a href="index.php?controller=khachang">Phân Quyền</a></li>
             <li><a href="index.php?controller=binhluan">Bình luận</a></li>
             <li><a href="index.php?controller=logout">Đăng xuất</a></li>
-           <li><a href="index.php?controller=donhang">Quản lý Đơn hàng</a></li>
+            <li><a href="index.php?controller=donhang">Quản lý Đơn hàng</a></li>
 
         </ul>
     </div>

@@ -46,7 +46,7 @@ try {
                             <?php echo $item['quantity']; ?>
                         </td>
                         <td>
-                            <?php echo $item['product_price']; ?>.000VND
+                            <?php echo $item['product_price']; ?>
                         </td>
                         <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
                                 style="width: 50px;"></td>
@@ -75,7 +75,7 @@ try {
         </table>
 
         <!-- Hiển thị tổng tiền -->
-        <p>Tổng tiền: <span id="totalPrice">0</span>.000 VND</p>
+        <p>Tổng tiền: <span id="totalPrice">0</span> VND</p>
 
         <button type="submit" class="btn btn-success" name="buy_all">Mua </button>
         <a href="index.php?controller=product" class="btn btn-primary">Tiếp Tục Mua Hàng</a>

@@ -10,7 +10,7 @@ class ProductController
                 include('view/home/homeAdmin.php');
             } else {
                 $ProductDAO = new ProductDAO();
-                $product = $ProductDAO->sharelist($_GET['product'], $_POST['search'] ?? null);
+                $products = $ProductDAO->sharelist($_GET['product'] ?? null, $_POST['search'] ?? null);
                 $danhmucs = $ProductDAO->showDanhMuc();
                 include 'view/product/cli/listitem.php';
             }

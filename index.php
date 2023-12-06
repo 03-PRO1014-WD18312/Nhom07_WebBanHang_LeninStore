@@ -7,19 +7,20 @@ include 'controller/ProductController.php';
 include 'controller/LoginController.php';
 include 'controller/UserController.php';
 include 'controller/OrderController.php';
+
 $controller = $_GET['controller'] ?? 'home';
 
 switch ($controller) {
 
 
-    case 'dangNhap':
-        $LoginController = new LoginController();
-        $LoginController->index();
-        break;
-     case 'dangKy':
-        $LoginController = new LoginController();
-        $LoginController->signup();
-       break;
+    // case 'dangNhap':
+    //     $LoginController = new LoginController();
+    //     $LoginController->index();
+    //     break;
+    // case 'dangKy':
+    //     $LoginController = new LoginController();
+    //     $LoginController->signup();
+    //     break;
     case 'dangXuat':
         $LoginController = new LoginController();
         $LoginController->logout();
@@ -37,7 +38,6 @@ switch ($controller) {
             $OrderController->index();
             break;
     case 'sanpham':
-
         $productController = new ProductController();
         $productController->sanpham();
         break;
@@ -57,8 +57,7 @@ switch ($controller) {
         $SanPhamController = new ProductController();
         $SanPhamController->productDetail();
         break;
-    case 'taiKhoan':
-        // Truyền đối tượng PDO vào UserController
+    case 'taiKhoan':      
         $UserController = new UserController();
         $UserController->index();
         break;

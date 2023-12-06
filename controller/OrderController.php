@@ -17,7 +17,7 @@ class OrderController {
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-        require_once 'view/globle/footer.php';
+     
     }
 
     public function detail($orderId) {
