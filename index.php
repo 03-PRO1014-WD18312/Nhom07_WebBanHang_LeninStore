@@ -6,19 +6,20 @@ include 'controller/HomeController.php';
 include 'controller/ProductController.php';
 include 'controller/LoginController.php';
 include 'controller/UserController.php';
+include 'controller/OrderController.php';
 $controller = $_GET['controller'] ?? 'home';
 
 switch ($controller) {
 
 
-    // case 'dangNhap':
-    //     $LoginController = new LoginController();
-    //     $LoginController->index();
-    //     break;
-    // case 'dangKy':
-    //     $LoginController = new LoginController();
-    //     $LoginController->signup();
-    //     break;
+    case 'dangNhap':
+        $LoginController = new LoginController();
+        $LoginController->index();
+        break;
+     case 'dangKy':
+        $LoginController = new LoginController();
+        $LoginController->signup();
+       break;
     case 'dangXuat':
         $LoginController = new LoginController();
         $LoginController->logout();
@@ -31,6 +32,10 @@ switch ($controller) {
         $productController = new ProductController();
         $productController->danhmuc();
         break;
+    case 'donhang':
+            $OrderController = new OrderController();
+            $OrderController->index();
+            break;
     case 'sanpham':
 
         $productController = new ProductController();

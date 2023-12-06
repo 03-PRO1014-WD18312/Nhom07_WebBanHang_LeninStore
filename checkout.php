@@ -66,7 +66,7 @@ try {
                                 <?php echo $item['quantity']; ?>
                             </td>
                             <td>
-                                <?php echo $item['product_price']; ?>
+                                <?php echo $item['product_price']; ?>.000 VND
                             </td>
                         </tr>
                     <?php endforeach; ?>

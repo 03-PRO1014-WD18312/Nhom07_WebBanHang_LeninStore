@@ -44,7 +44,7 @@ $productCategory = $product->danhmuc;
         <?php echo $productName; ?>
       </h1>
       <p class="h4">
-        <?php echo $productPrice; ?> VND
+        <?php echo $productPrice; ?>.000 VND
       </p>
       <p class="lead">
         <?php echo nl2br($productDescription); ?>
@@ -56,13 +56,7 @@ $productCategory = $product->danhmuc;
       <p>Danh mục:
         <?php echo $productCategory; ?>
       </p>
-
-      <form method="post" action="">
-        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-        <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
-        <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
-        <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-        <?php
+      <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -99,6 +93,12 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
+      <form method="post" action="">
+        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+        <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+        <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+        <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
+ 
         <button type="submit" class="button button4" name="add_to_cart">Thêm vào giỏ hàng</button>
 
       </form>
@@ -109,7 +109,7 @@ try {
         <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
         <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
         <input type="hidden" name="product_img" value="<?php echo $productImage; ?>">
-        <button type="submit" class="button button5" name="buy_now">Mua ngay</button>
+        <button type="submit" class="button button5" name="buy_all">Mua ngay</button>
       </form>
 
     </div>

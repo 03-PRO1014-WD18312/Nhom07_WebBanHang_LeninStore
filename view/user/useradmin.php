@@ -73,7 +73,7 @@ if (!$stmt) {
                     <th>Email</th>
                     <th>Address</th>
                     <th>SDT</th>
-                    <th>Role (Vai Trò)</th>
+                    <th>Role</th>
                     <th></th>
                 </tr>
 
