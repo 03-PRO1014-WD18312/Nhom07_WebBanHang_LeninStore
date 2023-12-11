@@ -6,15 +6,21 @@
   justify-content: center;
   align-items: center;
 }
+.hover-effect img {
+  transition: transform 0.5s;
+}
 
+.hover-effect:hover img {
+  transform: scale(1.2);
+}
 .product-card img {
-  transition: transform 0.5s, opacity 0.5s;
+  transition: transform 0.5s;
   display: block;
 }
 
 .product-card:hover img {
   transform: scale(1.2);
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
 /* Định dạng chung cho .card-title và .card-text */
 .product-card .card-title,
@@ -55,9 +61,4 @@
   fill: #000000; /* Điều chỉnh màu fill nếu cần thiết */
   transition: transform 0.5s, opacity 0.5s;
   opacity: 0;
-}
-
-.product-card:hover .svg-icon {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }

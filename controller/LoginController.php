@@ -21,30 +21,29 @@ class LoginController
     {
         $username = $_POST['email'] ?? null;
         $password = $_POST['password'] ?? null;
-        $address = $_POST['address'] ?? null;
-        $tel = $_POST['tel'] ?? null;
+
     
         $loginDAO = new LoginDAO();
-        $userInfo = $loginDAO->login($username, $password, $address, $tel);
-        
-        if ($userInfo !== null) {
+        $userInfo = $loginDAO->login($username, $password);
+        if ($userInfo) {
             $role = $userInfo["role"];
             $username = $userInfo["email"];
-    
+            $tel = $userInfo["tel"];
+            $address =  $userInfo["address"];
             // Thiết lập cookie cho vai trò (role) và thông tin người dùng
             setcookie("role", $role, time() + 3600, "/");
             setcookie("username", $username, time() + 3600, "/");
             setcookie('is_login', true, time() + 3600, "/");
-            setcookie('address', true, time() + 3600, "/");
-            setcookie('tel', true, time() + 3600, "/");
+            setcookie("tel", $tel, time() + 3600, "/");
+            setcookie("address", $address, time() + 3600, "/");
+
             
             // Chuyển hướng sau khi đăng nhập thành công
             header("Location: index.php?controller=home");
             exit();
         } else {
-            // Đăng nhập thất bại, xử lý lỗi ở đây (ví dụ: thông báo lỗi)
+         
             header("Location: index.php?controller=login&act=login");
-            exit();
         }
     }
     public function signup()
