@@ -73,12 +73,12 @@ try {
 
             <div class="form-group">
                 <label for="address">Địa Chỉ:</label>
-                <input type="text" class="form-control" id="address" name="address" required>
+                <input type="text" class="form-control" id="address" name="address"  value="<?php echo isset($_COOKIE['address']) ? $_COOKIE['address'] : ''; ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">SĐT:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required>
+                <input type="tel" class="form-control" id="phone" name="phone"  value="<?php echo isset($_COOKIE['tel']) ? $_COOKIE['tel'] : ''; ?>" required>
             </div>
 
             <input type="hidden" name="selected_products" value="<?php echo implode(',', $selectedProducts); ?>">
