@@ -98,7 +98,7 @@
                     <?php if (isset($_COOKIE['username'])): ?>
                         <!-- Người dùng đã đăng nhập -->
                         <li class="nav-item">
-                            <a class="nav-link" href="view\user\profile.php">Tài Khoản</a>
+                            <a class="nav-link" href="view\user\profile.php" "><?php echo isset($_COOKIE['username']) ? $_COOKIE['username'] : ''; ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?controller=dangXuat">Đăng Xuất</a>

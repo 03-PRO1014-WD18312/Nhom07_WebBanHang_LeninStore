@@ -26,17 +26,13 @@
                 <a href="index.php?controller=quenMatKhau">Quên mật khẩu?</a>
 
                 <!-- Hiển thị thông báo lỗi nếu đăng nhập thất bại -->
-                <?php
-                $role = $_COOKIE['is'] ?? null;
-                if (!$role) {
-                    echo ("");
-                }
-                ?>
-
                 <button type="submit">Đăng nhập</button>
                 <a href="index.php?controller=login&act=signup">Đăng ký</a>
 
             </form>
+            <div>
+                <img src="assets/imgs/item/1.jpg" alt="loi">
+            </div>
         </div>
 
     </div>

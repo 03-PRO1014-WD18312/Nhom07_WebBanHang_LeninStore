@@ -43,17 +43,15 @@ try {
                             <?php echo $item['product_name']; ?>
                         </td>
                         <td>
-                            <?php echo $item['quantity']; ?>
+                            <input type="number" name="product_quantity[<?php echo $item['product_id']; ?>]" value="<?php echo $item['quantity']; ?>" min="1" max="99">
                         </td>
                         <td>
-                            <?php echo $item['product_price']; ?>
+                            <?php echo $item['product_price']; ?>.000 VND
                         </td>
-                        <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh"
-                                style="width: 50px;"></td>
+                        <td><img src="assets/imgs/item/<?php echo $item['product_img']; ?>" alt="lỗi khi tải ảnh" style="width: 50px;"></td>
                         <td>
                             <?php echo $item['created_at']; ?>
                         </td>
-
                         <td>
                             <input type="checkbox" name="selected_products[]" value="<?php echo $item['product_id']; ?>"
                                 data-price="<?php echo $item['product_price']; ?>"
@@ -75,39 +73,53 @@ try {
         </table>
 
         <!-- Hiển thị tổng tiền -->
-        <p>Tổng tiền: <span id="totalPrice">0</span> VND</p>
+
+        <input type="hidden" name="total_price" value="<?php echo $totalPrice; ?>">
 
         <button type="submit" class="btn btn-success" name="buy_all">Mua </button>
         <a href="index.php?controller=product" class="btn btn-primary">Tiếp Tục Mua Hàng</a>
     </form>
 
     <script>
-        // JavaScript function để cập nhật tổng tiền khi checkbox thay đổi
-        function updateTotal() {
-            var checkboxes = document.querySelectorAll('input[name="selected_products[]"]');
-            var totalPrice = 0;
-
-            checkboxes.forEach(function (checkbox) {
-                if (checkbox.checked) {
-                    // Lấy giá và số lượng từ data-* attributes
-                    var price = parseFloat(checkbox.getAttribute('data-price'));
-                    var quantity = parseInt(checkbox.getAttribute('data-quantity'));
-
-                    // Cập nhật tổng tiền
-                    totalPrice += price * quantity;
-                }
-            });
-
-            // Hiển thị tổng tiền
-            document.getElementById('totalPrice').innerText = totalPrice.toLocaleString('vi-VN');
-        }
-
-        // Lắng nghe sự kiện thay đổi của checkbox
+    // JavaScript function để cập nhật tổng tiền khi checkbox hoặc input thay đổi
+    function updateTotal() {
         var checkboxes = document.querySelectorAll('input[name="selected_products[]"]');
+        var totalPrice = 0;
+
         checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', updateTotal);
+            if (checkbox.checked) {
+                // Lấy giá và số lượng từ data-* attributes
+                var price = parseFloat(checkbox.getAttribute('data-price'));
+                var productId = checkbox.value;
+                var quantityInput = document.querySelector('input[name="product_quantity[' + productId + ']"]');
+                var quantity = parseInt(quantityInput.value);
+
+                // Cập nhật tổng tiền
+                totalPrice += price * quantity;
+            }
         });
-    </script>
+
+        // Hiển thị tổng tiền
+        document.getElementById('totalPrice').innerText = totalPrice.toLocaleString('vi-VN');
+    }
+
+    // Lắng nghe sự kiện thay đổi của checkbox và input quantity
+    var checkboxes = document.querySelectorAll('input[name="selected_products[]"]');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', updateTotal);
+    });
+
+    var quantityInputs = document.querySelectorAll('input[name^="product_quantity"]');
+    quantityInputs.forEach(function (input) {
+        input.addEventListener('input', updateTotal);
+    });
+
+    // Initial calculation on page load
+    updateTotal();
+</script>
+
+
+
 <?php else: ?>
     <p>Giỏ hàng trống.</p>
     <form method="post" action="index.php">

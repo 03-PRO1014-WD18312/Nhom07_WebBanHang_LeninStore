@@ -21,7 +21,7 @@ class LoginDAO
 
     public function Login($username, $password)
 {
-    $sql = "SELECT `id_ac`, `user`, `anh`, `role`, `trang_thai`, `email`, `address`, `tel` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
+    $sql = "SELECT `id_ac`, `user`,`tel`,`address`, `anh`, `role`, `trang_thai`, `email` FROM `taikhoan` WHERE `email` = :username AND `pass` = :password";
     $stmt = $this->PDO->prepare($sql);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
@@ -34,10 +34,6 @@ class LoginDAO
     // Xác định quyền (role) của người dùng từ dữ liệu
     return $row ?? null;
 }
-
-    
-    
-
     public function signup($email, $password, $address, $tel)
     {
         $sql = "INSERT INTO `taikhoan`(`email`, `pass`, `address`, `tel`) VALUES (:email, :password, :address, :tel)";

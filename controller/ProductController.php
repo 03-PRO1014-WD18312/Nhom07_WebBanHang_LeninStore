@@ -1,6 +1,8 @@
 <?php
 class ProductController
 {
+ 
+
     public function index()
     {
         
@@ -72,28 +74,54 @@ class ProductController
         
         
     }
-    public function binhluan()
+   
+    public function addComment()
     {
-        // if (isset($_SESSION["role"])) {
-        //     if ($_SESSION["role"] == 1) {
-        //         $commentDAO = new CommentDAO();
-        //         $count = $commentDAO->count();
-        //         include('view/binhluan/binhluan.php');
-        //     } else {
-        //         $ProductDAO = new ProductDAO();
-        //         $commentDAO = new CommentDAO();
-        //         $timestamp = $commentDAO->get_time_present();
-        //         $commentDAO->add($_POST['id_pro'], $_POST['bl'], $_SESSION['acc'], $_POST['time']);
-        //         $sanpham = $ProductDAO->SelectOneItem($_POST['id_pro']);
-        //         $products = $ProductDAO->lq($_POST['iddm']);
-        //         $comments =  $commentDAO->show($_POST['id_pro']);
-        //         $danhmucs = $ProductDAO->showDanhMuc();
-        //         include('view/product/cli/item.php');
-        //     }
-        // } else {
-        //     include('view/login/login.php');
-        // }
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["comment_content"])) {
+            // Get the user ID from the session
+            $userId = $_SESSION["user_id"];
+    
+            // Get the product ID from the form
+            $productId = $_POST["product_id"];
+    
+            // Get the comment content from the form
+            $content = $_POST["comment_content"];
+    
+            // Validate and sanitize the input if needed
+    
+            // Insert the comment into the database
+            $this->insertComment($userId, $productId, $content);
+        }
     }
+    
+    private function insertComment($userId, $productId, $content)
+    {
+        // Provide the database connection details
+        $servername = "your_server_name";
+        $username = "your_username";
+        $password = "your_password";
+        $database = "your_database_name";
+    
+        try {
+            // Create a new PDO instance
+            $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            // Prepare and execute the SQL query
+            $query = $conn->prepare("INSERT INTO binhluan (noidung, iduser, idpro, ngaybinhluan) VALUES (:content, :userId, :productId, NOW())");
+            $query->bindParam(':content', $content);
+            $query->bindParam(':userId', $userId);
+            $query->bindParam(':productId', $productId);
+            $query->execute();
+    
+            // Close the database connection
+            $conn = null;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+    
+
     public function productDetail()
     {
         // Kiểm tra quyền người dùng
@@ -115,6 +143,7 @@ class ProductController
     
             // Lấy thông tin sản phẩm từ cơ sở dữ liệu
             $product = $ProductDAO->showOne($productId);
+            $danhmucs = $ProductDAO->showDanhMuc();
     
             // Kiểm tra xem sản phẩm có tồn tại không
             if ($product === null) {

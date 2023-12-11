@@ -29,6 +29,7 @@
                 <a href="index.php?controller=login&act=login">Đăng nhập</a>
             </form>
         </div>
+        
     </div>
 
     <script>
